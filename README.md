@@ -56,7 +56,7 @@ ID | User Story | Size | Priority
 2 | As a user, I want to be able to add and delete my ingredients so I can search for new recipes faster | ? | ?
 3 | Story 3 | ? | ?
 4 | Story 4 | ? | ?
-5 | Story 5 | ? | ?
+5 | As a site manager, I want to expand my list of available recipes | ? | ?
 
 ## Methodology
 
