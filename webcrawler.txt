@@ -1,0 +1,8 @@
+idea for web crawler
+program by python, package scrappy
+crawl selected website, use regex to identify keywords 
+after crawling to the recipes site, use a scraper to get the require information
+format return to either give the link or store the recipe inside a temp database
+
+input: key words from user
+output: recipes, either link or condensed text.
