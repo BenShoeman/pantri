@@ -60,7 +60,7 @@ ID | User Story | Size | Priority
 
 ## Methodology
 
-METHODOLOGY HERE
+We will be using the AGILE method for pantri's development. 
 
 ## Project Tracking
 
