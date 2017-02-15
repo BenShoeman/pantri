@@ -54,13 +54,13 @@ ID | User Story | Size | Priority
 0 | As a user, I want to input my ingredients to a search bar and receive multiple recipes from trusted websites in order to find recipes that match my ingredients | ? | ?
 1 | As a user, I want my search results ordered by relevance | ? | ?
 2 | As a user, I want to be able to add and delete my ingredients so I can search for new recipes faster | ? | ?
-3 | Story 3 | ? | ?
+3 | As a user, I want to group ingredients by criteria such as price and common use in cooking, in order to make meals | ? | ?
 4 | Story 4 | ? | ?
 5 | As a site manager, I want to expand my list of available recipes | ? | ?
 
 ## Methodology
 
-METHODOLOGY HERE
+We will be using the AGILE method for pantri's development
 
 ## Project Tracking
 
