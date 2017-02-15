@@ -49,14 +49,14 @@ We all have a lot of ingredients in our pantry, but we don’t know what to make
 
 ### User Stories
 
-ID | User Story | Size | Priority
----|------------|------|---------
-0 | As a user, I want to input my ingredients to a search bar and receive multiple recipes from trusted websites in order to find recipes that match my ingredients | ? | ?
-1 | As a user, I want my search results ordered by relevance | ? | ?
-2 | As a user, I want to be able to add and delete my ingredients so I can search for new recipes faster | ? | ?
-3 | As a user, I want to group ingredients by criteria such as price and common use in cooking, in order to make meals | ? | ?
-4 | As a user, I want to save recipes so I can use them later | ? | ?
-5 | As a site manager, I want to expand my list of available recipes | ? | ?
+ID | User Story | Size 
+---|------------|------
+0 | As a user, I want to input my ingredients to a search bar and receive multiple recipes from trusted websites in order to find recipes that match my ingredients | 40 
+1 | As a user, I want my search results ordered by relevance | 13 
+2 | As a user, I want to be able to add and delete my ingredients so I can search for new recipes faster | 5
+3 | As a user, I want to group ingredients by criteria such as price and common use in cooking, in order to make meals | 60
+4 | As a user, I want to save recipes so I can use them later | 3
+5 | As a site manager, I want to expand the list of available recipes, by adding my site to the list of trusted websites | 13
 
 ## Methodology
 
