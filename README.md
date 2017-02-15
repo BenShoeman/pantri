@@ -51,9 +51,9 @@ We all have a lot of ingredients in our pantry, but we don’t know what to make
 
 ID | User Story | Size | Priority
 ---|------------|------|---------
-0 | Story 0 | ? | ?
-1 | Story 1 | ? | ?
-2 | Story 2 | ? | ?
+0 | As a user, I want to input my ingredients to a search bar and receive multiple recipes from trusted websites in order to find recipes that match my ingredients | ? | ?
+1 | As a user, I want my search results ordered by relevance | ? | ?
+2 | As a user, I want to be able to add and delete my ingredients so I can search for new recipes faster | ? | ?
 3 | Story 3 | ? | ?
 4 | Story 4 | ? | ?
 5 | Story 5 | ? | ?
