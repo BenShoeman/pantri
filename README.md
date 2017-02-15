@@ -2,35 +2,50 @@
 
 ## Team Members:
 * Nabil Ettachfini (@NabilEttachfini)
-* Alex Hamlet (@TO ADD)
-* Kingston Rainsworth (@KingstonRainsworth)
+* Alex Hamlet (@AlexanderHamlet)
+* Hoang Vu (@KingstonRainsworth)
 * Courtney Solano (@courtsolano)
 * Ben Shoeman (@BenShoeman)
 
 ## Description
 
-DESCRIPTION HERE
+**Pantri.com** is a website that allow user to search recipes using their inputted ingredients.
 
 ## Our Vision
 
-VISION STATEMENT HERE
+Dinner Made Easy
 
 ## Motivation
 
-MOTIVATION HERE
+We all have a lot of ingredients in our pantry, but we don’t know what to make with it.
 
 ## Risks
 
-* RISKS
-* HERE
+*First major software project
+*Some members new to HTML, CSS, JavaScript
+*Copyright risk
+*Overflow of datas
+*Security
+*Server hosting
 
 ## Mitigation Strategy
 
-* MITIGATION
-* STRATEGY
-* HERE
+*Working hard through problems, meet deadlines
+*Learning HTML, CSS, JavaScript from members more experienced in these languages
+*Link users to websites, instead of taking recipes as our own
+*Overflow  of datas solved by testing and designing a good algorithm
+*Not asking for any personal information - just username and password
+*Planned to host on colorado.edu servers, should have some security through those
+*Hosting problems will be consult with the school server lender
 
 ## Requirements
+
+*Matching user input to google search
+*Account that stores ingredients with the option to remove items once used or gone bad
+*List of needed ingredients, or search for only those ingredients
+*User saved recipes
+*Links to a couple trusted recipe websites with the title as the link
+
 
 ### User Stories
 
