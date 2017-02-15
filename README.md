@@ -55,7 +55,7 @@ ID | User Story | Size | Priority
 1 | As a user, I want my search results ordered by relevance | ? | ?
 2 | As a user, I want to be able to add and delete my ingredients so I can search for new recipes faster | ? | ?
 3 | As a user, I want to group ingredients by criteria such as price and common use in cooking, in order to make meals | ? | ?
-4 | Story 4 | ? | ?
+4 | As a user, I want to save recipes so I can use them later | ? | ?
 5 | As a site manager, I want to expand my list of available recipes | ? | ?
 
 ## Methodology
