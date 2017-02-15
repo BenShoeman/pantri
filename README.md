@@ -1,23 +1,54 @@
 # pantri
 
-__Team Members:__
+## Team Members:
+* Nabil Ettachfini (@NabilEttachfini)
+* Alex Hamlet (@TO ADD)
+* Kingston Rainsworth (@KingstonRainsworth)
+* Courtney Solano (@courtsolano)
+* Ben Shoeman (@BenShoeman)
 
-Nabil Ettachfini
+## Description
 
-> NabilEttachfini
+DESCRIPTION HERE
 
-Alex Hamlet
+## Our Vision
 
-> TO ADD
+VISION STATEMENT HERE
 
-Kingston Rainsworth
+## Motivation
 
-> TO ADD
+MOTIVATION HERE
 
-Courtney Solano
+## Risks
 
-> courtsolano
+* RISKS
+* HERE
 
-Benjamin Shoeman
+## Mitigation Strategy
 
-> BenShoeman
+* MITIGATION
+* STRATEGY
+* HERE
+
+## Requirements
+
+### User Stories
+
+ID | User Story | Size | Priority
+---|------------|------|---------
+0 | Story 0 | ? | ?
+1 | Story 1 | ? | ?
+2 | Story 2 | ? | ?
+3 | Story 3 | ? | ?
+4 | Story 4 | ? | ?
+5 | Story 5 | ? | ?
+
+## Methodology
+
+METHODOLOGY HERE
+
+## Project Tracking
+
+* GitHub Issues and Projects ([Repository Link](https://github.com/BenShoeman/pantri))
+* [Slack](https://pantriteam.slack.com/)
+* [Project Plan \(ADD GITHUB PROJECT LINK HERE\)](#)
