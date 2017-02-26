@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  times_searched: 
+  recipe: one
+
+two:
+  name: MyString
+  times_searched: 
+  recipe: two

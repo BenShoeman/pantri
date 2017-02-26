@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= link_to @recipe.name, @recipe.recipe_url %>
+</p>
+# When name is clicked, go to url
+
+<p>
+  <strong>Servings:</strong>
+  <%= @recipe.servings %>
+</p>
+
+<p>
+  <strong>Prep time:</strong>
+  <%= @recipe.prep_time %>
+</p>
+
+<p>
+  <strong>Cook time:</strong>
+  <%= @recipe.cook_time %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @recipe.image_url %>
+</p>
+
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %>

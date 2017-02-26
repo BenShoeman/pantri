@@ -1,0 +1,15 @@
+current directory: /home/benshoeman/Documents/git/pantri/vendor/bundle/ruby/2.3.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+/usr/bin/ruby2.3 -r ./siteconf20170225-16938-5s8vub.rb extconf.rb
+creating Makefile
+
+current directory: /home/benshoeman/Documents/git/pantri/vendor/bundle/ruby/2.3.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /home/benshoeman/Documents/git/pantri/vendor/bundle/ruby/2.3.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/benshoeman/Documents/git/pantri/vendor/bundle/ruby/2.3.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20170225-16938-9i56nu
