@@ -4,5 +4,5 @@ class Recipe < ApplicationRecord
 end
 
 def self.search(search)
-    where("ingredients ILIKE ?", "%#{search}%")
+    where("ingredients LIKE ?", "%#{search}%")
 end
