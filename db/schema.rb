@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170226030550) do
     t.integer  "servings"
     t.integer  "prep_time"
     t.integer  "cook_time"
+    t.string   "recipe_url"
     t.string   "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
