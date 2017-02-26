@@ -29,10 +29,13 @@
         <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-    <% if recipes.size ==0 %>
-      <em>No Recipes Found</em>
-    <% end %>
-
+    <tr>
+      <td colspan="9">
+        <% if @recipes.size == 0 %>
+          <em>No Recipes Found</em>
+        <% end %>
+      </td>
+    </tr>
   </tbody>
 </table>
 
