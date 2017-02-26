@@ -17,7 +17,7 @@
   <tbody>
     <% @recipes.each do |recipe| %>
       <tr>
-        <td><%= recipe.name %></td>
+        <td><%= link_to @recipe.name, @recipe.recipe_url %></td>
         <td><%= recipe.servings %></td>
         <td><%= recipe.prep_time %></td>
         <td><%= recipe.cook_time %></td>
@@ -27,6 +27,10 @@
         <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <% if recipes.size ==0 %>
+      <em>No Recipes Found</em>
+    <% end %>
+
   </tbody>
 </table>
 
