@@ -2,8 +2,9 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @recipe.name %>
+  <%= link_to @recipe.name, @recipe.recipe_url %>
 </p>
+# When name is clicked, go to url
 
 <p>
   <strong>Servings:</strong>
