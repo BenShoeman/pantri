@@ -4,7 +4,8 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.find(:all, where: "ingredients LIKE user_input")
+    search = "%#{search}%"
+    @recipes = Recipe.find(:all, where: "ingredients ILIKE ?", search)
   end
 
   # GET /recipes/1
