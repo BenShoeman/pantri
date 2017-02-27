@@ -24,9 +24,9 @@ def link_spider():
 		traversable = link.get('href')
 		print(traversable)
 		recipe_spider(traversable)
-                # Adding time.sleep for five seconds so that we don't get denied
-                # access, also for demoing the project
-                time.sleep(5)
+		# Adding time.sleep for five seconds so that we don't get denied
+		# access, also for demoing the project
+		time.sleep(5)
 link_spider()
 
 #def link_spider():
