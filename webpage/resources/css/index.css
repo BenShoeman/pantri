@@ -4,6 +4,10 @@ body{
   align-items: center;
   flex-wrap: wrap;
   background-image: url("../img/pho.png");
+  background-position: center top;
+  background-size: 100% auto;
+
+  font-size: 12pt;
 }
 
 #logo{
@@ -13,6 +17,7 @@ body{
   background-image: url(../img/logo.gif);
   background-repeat: no-repeat;
   background-position: center;
+  background-size: auto 100%;
   padding: 2em;
   margin-top: 5em;
   margin-bottom: 2em;
@@ -45,4 +50,90 @@ form{
   display: flex;
   height:5em;
   overflow: hidden;
+}
+
+#recipe-container
+{
+  /* Display elements in card format wrapping around the body */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+  /* Same width as form for consistency */
+  width: 80%;
+  margin-top: 3em;
+}
+
+.recipe-card-link
+{
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 2em;
+}
+
+.recipe-card
+{
+  position: relative;
+  width: 3in;
+  height: 12em;
+  box-shadow: 0 0 1em rgba(0,0,0,0.6);
+
+  /* Will be dynamic image; static for now */
+  background-image: url("../img/pho.png");
+  background-position: center top;
+  background-size: 100% auto;
+
+  color: black;
+}
+
+.recipe-info
+{
+  position: absolute;
+  width: calc(100% - 0.2in);
+  bottom: 0;
+  padding: 0.1in;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  background-color: white;
+
+  font-size: 1em;
+}
+
+.recipe-info h1
+{
+  width: 100%;
+  margin: 0;
+
+  font-size: 1.25em;
+}
+
+.recipe-info p
+{
+  margin-top: 0.1in;
+  margin-bottom: 0;
+
+  font-size: 1em;
+}
+
+/* For mobile devices */
+@media screen and (max-device-width: 768px)
+{
+  body{
+    background-size: auto 100vh;
+    font-size: 14pt;
+  }
+
+  #recipe-container
+  {
+    flex-flow: column;
+  }
+
+  .recipe-card
+  {
+    width: 100%;
+    margin-bottom: 1.5em;
+    font-size: 2.5em;
+  }
 }
