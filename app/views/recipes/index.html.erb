@@ -1,8 +1,63 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
-<h1>Recipes</h1>
+<!-- <h1>Recipes</h1> -->
 
-<table>
+<header id="logo"></header>
+
+<%= form_tag(recipes_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Type ingredients...", id: "search_bar" %>
+  <%= submit_tag "", id: "sButton" %>
+<% end %>
+
+<section id="recipe-container">
+  <% if (params.has_key?(:search)) %>
+    <% if @recipes.size == 0 %>
+      No Recipes Found
+    <% else %>
+      <% @recipes.each do |recipe| %>
+        <a class="recipe-card-link" target="_blank" href="<%= recipe.recipe_url %>">
+          <section class="recipe-card">
+            <section class="recipe-image" style="background-image:url('<%= recipe.image_url %>');"></section>
+            <section class="recipe-info">
+              <h1><%= recipe.name %></h1>
+              <p class="recipe-servings">Serves <%= recipe.servings %></p>
+              <p class="recipe-time">
+                Prep:
+                <% if recipe.prep_time < 60 %>
+                  <%= recipe.prep_time %> m
+                <% else %>
+                  <%= recipe.prep_time / 60 %> h
+                <% end %>
+              </p>
+              <p class="recipe-time">
+                Cook:
+                <% if recipe.cook_time < 60 %>
+                  <%= recipe.cook_time %> m
+                <% else %>
+                  <%= recipe.cook_time / 60 %> h
+                <% end %>
+              </p>
+              <p class="recipe-time">
+                Ready in:
+                <% if (recipe.prep_time + recipe.cook_time) < 60 %>
+                  <%= recipe.prep_time + recipe.cook_time %> m
+                <% else %>
+                  <%= (recipe.prep_time + recipe.cook_time) / 60 %> h
+                <% end %>
+              </p>
+              <ul>
+                <li class="relevant">recipes will</li>
+                <li>be here</li>
+              </ul>
+            </section>
+          </section>
+        </a>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>
+
+<!-- <table>
   <thead>
     <tr>
       <th>Name</th>
@@ -18,8 +73,8 @@
     <% @recipes.each do |recipe| %>
       <tr>
         <td>
-			<%= link_to recipe.name, recipe.recipe_url %>
-		</td>
+			    <%= link_to recipe.name, recipe.recipe_url %>
+		    </td>
         <td><%= recipe.servings %></td>
         <td><%= recipe.prep_time %> minutes</td>
         <td><%= recipe.cook_time/60 %> hours</td>
@@ -29,16 +84,16 @@
         <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <% if @recipes.size == 0 %>
     <tr>
       <td colspan="9">
-        <% if @recipes.size == 0 %>
-          <em>No Recipes Found</em>
-        <% end %>
+        <em>No Recipes Found</em>
       </td>
     </tr>
+    <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Recipe', new_recipe_path %>
+<%= link_to 'New Recipe', new_recipe_path %> -->
