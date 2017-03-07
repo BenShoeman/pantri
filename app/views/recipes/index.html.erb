@@ -1,16 +1,14 @@
-<!-- <p id="notice"><%= notice %></p> -->
+<section id="logo-search-container" <% if (params.has_key?(:q)) %>class="search"<% end %>>
+  <header id="logo" <% if (params.has_key?(:q)) %>onclick="window.location='/'"<% end %>></header>
 
-<!-- <h1>Recipes</h1> -->
+  <%= form_tag recipes_path, method: :get, :enforce_utf8 => false, id: "search-form" do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Type ingredients...", id: "search_bar", :autocomplete => :off, autofocus: "autofocus" %>
+    <%= submit_tag "", name: nil, id: "sButton" %>
+  <% end %>
+</section>
 
-<header id="logo"></header>
-
-<%= form_tag(recipes_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Type ingredients...", id: "search_bar" %>
-  <%= submit_tag "", id: "sButton" %>
-<% end %>
-
-<section id="recipe-container">
-  <% if (params.has_key?(:search)) %>
+<% if (params.has_key?(:q)) %>
+  <section id="recipe-container">
     <% if @recipes.size == 0 %>
       No Recipes Found
     <% else %>
@@ -26,7 +24,8 @@
                 <% if recipe.prep_time < 60 %>
                   <%= recipe.prep_time %> m
                 <% else %>
-                  <%= recipe.prep_time / 60 %> h
+                  <!-- Three significant digits or less are printed -->
+                  <%= sprintf('%.3g', Float(recipe.prep_time) / 60) %> h
                 <% end %>
               </p>
               <p class="recipe-time">
@@ -34,7 +33,8 @@
                 <% if recipe.cook_time < 60 %>
                   <%= recipe.cook_time %> m
                 <% else %>
-                  <%= recipe.cook_time / 60 %> h
+                  <!-- Three significant digits or less are printed -->
+                  <%= sprintf('%.3g', Float(recipe.cook_time) / 60.0) %> h
                 <% end %>
               </p>
               <p class="recipe-time">
@@ -42,58 +42,22 @@
                 <% if (recipe.prep_time + recipe.cook_time) < 60 %>
                   <%= recipe.prep_time + recipe.cook_time %> m
                 <% else %>
-                  <%= (recipe.prep_time + recipe.cook_time) / 60 %> h
+                  <!-- Three significant digits or less are printed -->
+                  <%= sprintf('%.3g', Float(recipe.prep_time + recipe.cook_time) / 60.0) %> h
                 <% end %>
               </p>
               <ul>
-                <li class="relevant">recipes will</li>
-                <li>be here</li>
+                <% recipe.ingredients.collect(&:name).each do |ingredient| %>
+                  <!-- Mark as relevant if it matches a parameter -->
+                  <% if ingredient.include? params[:q] %><li class="relevant"><%= ingredient %></li>
+                  <!-- Otherwise go with default styling -->
+                  <% else %><li><%= ingredient %></li><% end %>
+                <% end %>
               </ul>
             </section>
           </section>
         </a>
       <% end %>
     <% end %>
-  <% end %>
-</section>
-
-<!-- <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Servings</th>
-      <th>Prep time</th>
-      <th>Cook time</th>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @recipes.each do |recipe| %>
-      <tr>
-        <td>
-			    <%= link_to recipe.name, recipe.recipe_url %>
-		    </td>
-        <td><%= recipe.servings %></td>
-        <td><%= recipe.prep_time %> minutes</td>
-        <td><%= recipe.cook_time/60 %> hours</td>
-        <td><img src="<%= recipe.image_url %>" style="width:25%;height:auto;"></td>
-        <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-    <% if @recipes.size == 0 %>
-    <tr>
-      <td colspan="9">
-        <em>No Recipes Found</em>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Recipe', new_recipe_path %> -->
+  </section>
+<% end %>

@@ -5,8 +5,13 @@ class RecipesController < ApplicationController
   # GET /recipes.json
   def index
     # @recipes = Recipe.all
-    if (params.has_key?(:search))
-      @recipes = Recipe.search(params[:search])
+    if (params.has_key?(:q))
+      if (params[:q].blank?)
+        @recipes = Recipe.none()
+      else
+        @recipes = Recipe.search(params[:q])
+      end
+      # @ingredients = Recipe.getIngredients(params[:search])
     else
       @recipes = Recipe.all
     end
