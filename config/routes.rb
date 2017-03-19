@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   resources :recipe_ingredients
   resources :ingredients
   resources :recipes
