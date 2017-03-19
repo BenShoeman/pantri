@@ -1,5 +1,7 @@
 <!-- app/views/users/new.html.erb -->
 
+<%= stylesheet_link_tag params[:controller] %>
+
 <h1>Sign up for Pantri</h1>
 
 <%= form_for :user, url: '/users' do |f| %>

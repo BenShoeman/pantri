@@ -12,5 +12,5 @@
  *
  *= require_self
  *= require normalize
- *= require_tree .
+ * require_tree .
  */
