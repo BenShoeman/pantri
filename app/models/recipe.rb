@@ -4,7 +4,7 @@ class Recipe < ApplicationRecord
 
   def self.search(search)
     Recipe.joins(:recipe_ingredients).joins(:ingredients).
-      where("ingredients.name ILIKE ?", "%#{search}%").uniq
+      where("ingredients.name ilike ?", "%#{search}%").uniq
   end
 
   def self.none()

@@ -1,7 +1,8 @@
 /* Import Raleway webfont from Google */
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
-body{
+body
+{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +15,8 @@ body{
   font-family: Raleway, Arial, Helvetica, sans-serif;
 }
 
-#logo{
+#logo
+{
   box-sizing: border-box;
   width: 90%;
   height: 15em;
@@ -40,7 +42,8 @@ body{
   cursor: pointer;
 }
 
-#search_bar{
+#search_bar
+{
   font-size: 4em;
   font-family: Raleway, Arial, Helvetica, sans-serif;
   box-sizing: border-box;
@@ -61,7 +64,8 @@ body{
   // font-size: 3em;
 }
 
-#sButton{
+#sButton
+{
   box-sizing: border-box;
   width: 10%;
   height: 5em;
@@ -80,7 +84,8 @@ body{
   height: 100%;
 }
 
-form{
+form
+{
   box-sizing: border-box;
   width: 80%;
   margin-left: 10%;
@@ -242,7 +247,8 @@ form{
 
 @media screen and (max-aspect-ratio: 3/2)
 {
-  body {
+  body
+  {
     background-size: auto 100vh;
   }
 }

@@ -1,0 +1,63 @@
+<section id="logo-search-container" class="search">
+  <header id="logo" onclick="window.location='/'"></header>
+
+  <%= form_tag (root_url + "search"), method: :get, :enforce_utf8 => false, id: "search-form" do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Type ingredients...", id: "search_bar", :autocomplete => :off, autofocus: "autofocus" %>
+    <%= submit_tag "", name: nil, id: "sButton" %>
+  <% end %>
+</section>
+
+<% if (params.has_key?(:q)) %>
+  <section id="recipe-container">
+    <% if @recipes.size == 0 %>
+      No Recipes Found
+    <% else %>
+      <% @recipes.each do |recipe| %>
+        <a class="recipe-card-link" target="_blank" href="<%= recipe.recipe_url %>">
+          <section class="recipe-card">
+            <section class="recipe-image" style="background-image:url('<%= recipe.image_url %>');"></section>
+            <section class="recipe-info">
+              <h1><%= recipe.name %></h1>
+              <p class="recipe-servings">Serves <%= recipe.servings %></p>
+              <p class="recipe-time">
+                Prep:
+                <% if recipe.prep_time < 60 %>
+                  <%= recipe.prep_time %> m
+                <% else %>
+                  <!-- Three significant digits or less are printed -->
+                  <%= sprintf('%.3g', Float(recipe.prep_time) / 60) %> h
+                <% end %>
+              </p>
+              <p class="recipe-time">
+                Cook:
+                <% if recipe.cook_time < 60 %>
+                  <%= recipe.cook_time %> m
+                <% else %>
+                  <!-- Three significant digits or less are printed -->
+                  <%= sprintf('%.3g', Float(recipe.cook_time) / 60.0) %> h
+                <% end %>
+              </p>
+              <p class="recipe-time">
+                Ready in:
+                <% if (recipe.prep_time + recipe.cook_time) < 60 %>
+                  <%= recipe.prep_time + recipe.cook_time %> m
+                <% else %>
+                  <!-- Three significant digits or less are printed -->
+                  <%= sprintf('%.3g', Float(recipe.prep_time + recipe.cook_time) / 60.0) %> h
+                <% end %>
+              </p>
+              <ul>
+                <% recipe.ingredients.collect(&:name).each do |ingredient| %>
+                  <!-- Mark as relevant if it matches a parameter -->
+                  <% if ingredient.include? params[:q] %><li class="relevant"><%= ingredient %></li>
+                  <!-- Otherwise go with default styling -->
+                  <% else %><li><%= ingredient %></li><% end %>
+                <% end %>
+              </ul>
+            </section>
+          </section>
+        </a>
+      <% end %>
+    <% end %>
+  </section>
+<% end %>
