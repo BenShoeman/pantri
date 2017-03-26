@@ -15,4 +15,4 @@ end
 
 
 
-  //mention the foreign key and the model within the migration.
+  #mention the foreign key and the model within the migration.
