@@ -18,7 +18,7 @@ def main():
         # con.cursor will return a cursor object which can be used to perform queries
         cur = con.cursor()
         print "Connected!\n"
-        
+
         # ----- Test code for running queries -----
         # Run select query on ingredients, selecting their names
         cur.execute("select name from ingredients;")
@@ -27,7 +27,7 @@ def main():
         print "Printing all ingredients in the database:"
         for entry in cur:
             print entry[0]
-        
+
         # Close connection at end
         con.close()
 

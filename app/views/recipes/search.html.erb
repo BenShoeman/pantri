@@ -45,15 +45,18 @@
                   <%= recipe.prep_time + recipe.cook_time %> m
                 <% else %>
                   <!-- Three significant digits or less are printed -->
-                  <%= sprintf('%.3g', Float(recipe.prep_time + recipe.cook_time) / 60.0) %> h
+                  <%= sprintf('%.3g', Float(recipe.total_time) / 60.0) %> h
                 <% end %>
               </p>
               <ul>
+                <!-- We do the two parts separately so relevant ingredients are at the top -->
                 <% recipe.ingredients.collect(&:name).each do |ingredient| %>
                   <!-- Mark as relevant if it matches a parameter -->
-                  <% if ingredient.include? params[:q] %><li class="relevant"><%= ingredient %></li>
+                  <% if ingredient.include? params[:q] %><li class="relevant"><%= ingredient %></li><% end %>
+                <% end %>
+                <% recipe.ingredients.collect(&:name).each do |ingredient| %>
                   <!-- Otherwise go with default styling -->
-                  <% else %><li><%= ingredient %></li><% end %>
+                  <% if not ingredient.include? params[:q] %><li><%= ingredient %></li><% end %>
                 <% end %>
               </ul>
             </section>

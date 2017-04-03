@@ -175,7 +175,9 @@ form
 .recipe-info
 {
   position: absolute;
+  overflow: hidden;
   width: calc(100% - 0.2in);
+  height: 6em;
   bottom: 0;
   padding: 0.1in;
   display: flex;

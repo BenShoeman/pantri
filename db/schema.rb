@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170308030310) do
     t.integer  "servings"
     t.integer  "prep_time"
     t.integer  "cook_time"
+    t.integer  "total_time"
     t.string   "recipe_url", limit: 2083
     t.string   "image_url",  limit: 2083
     t.datetime "created_at",              null: false

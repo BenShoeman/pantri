@@ -4,17 +4,6 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    # @recipes = Recipe.all
-    if (params.has_key?(:q))
-      if (params[:q].blank?)
-        @recipes = Recipe.none()
-      else
-        @recipes = Recipe.search(params[:q])
-      end
-      # @ingredients = Recipe.getIngredients(params[:search])
-    else
-      @recipes = Recipe.all
-    end
   end
 
   def search
