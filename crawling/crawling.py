@@ -47,6 +47,7 @@ def recipe_spider(recipe_url, dbcon):
                 recipe_name = re.sub(r'[\"\']', '', recipe_name)
             except KeyError:
                 print "No name, not adding this recipe to the DB"
+                dbcon.rollback()
                 continue # don't use this link since we don't have a name
 
             # URL of Image
@@ -154,6 +155,7 @@ def recipe_spider(recipe_url, dbcon):
                         cur.execute(query)
             except KeyError:
                 print "No ingredients, not adding this recipe to the DB"
+                dbcon.rollback()
                 continue # don't use this link since we don't have ingredients
 
             dbcon.commit()
