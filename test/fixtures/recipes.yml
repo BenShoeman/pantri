@@ -1,15 +1,17 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  name: MyString
-  servings: 
-  prep_time: 
-  cook_time: 
-  image_url: MyString
+  name: Recipe 1
+  servings: 4
+  prep_time: 10
+  cook_time: 15
+  total_time: 25
+  recipe_url: http://www.example.com/recipe1
+  image_url: http://www.trythisforexample.com/images/example_logo.png
 
 two:
-  name: MyString
-  servings: 
-  prep_time: 
-  cook_time: 
-  image_url: MyString
+  name: Recipe 2
+  servings: 16
+  prep_time: 30
+  cook_time: 80
+  total_time: 170
+  recipe_url: http://www.example.com/recipe2
+  image_url: http://www.trythisforexample.com/images/example_logo.png

@@ -3,12 +3,22 @@ class Recipe < ApplicationRecord
   has_many :ingredients, :through => :recipe_ingredients
 
   def self.search(search)
-    Recipe.joins(:recipe_ingredients).joins(:ingredients).
-      where("ingredients.name ilike ?", "%#{search}%").uniq
+    params = search.split(/,/) # Split by comma
+    search_query = ""
+    params.each do |param|
+      param = param.strip()
+      search_query += "ingredients.name ilike '%" + param + "%' or "
+    end
+    search_query = search_query[0..-5]
+
+    recipes = Recipe.joins(:recipe_ingredients).joins(:ingredients).
+      where(search_query).distinct
+      # where("ingredients.name ilike ?", "%#{search}%").uniq
+    return recipes
   end
 
   def self.none()
-    where("1 = 0")
+    return where("1 = 0")
   end
 
   # def self.getIngredients(search)
