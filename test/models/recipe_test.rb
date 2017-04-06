@@ -23,7 +23,11 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "should return [Recipe 1, Recipe 2] with search('ingr3')" do
     recipes = Recipe.search('ingr3')
-    assert recipes[0].name == "Recipe 1" and recipes[1].name == "Recipe 2"
+    if recipes[0].name == "Recipe 1"
+      assert recipes[0].name == "Recipe 1" and recipes[1].name == "Recipe 2"
+    else
+      assert recipes[1].name == "Recipe 1" and recipes[0].name == "Recipe 2"
+    end
   end
 
   test "should return 2 recipes with search('ingr1,ingr2')" do
@@ -32,7 +36,7 @@ class RecipeTest < ActiveSupport::TestCase
   end
 
   test "should return 2 recipes with search('ingr1, ingr2, ingr3 ')" do
-    recipes = Recipe.search('ingr1, ingr2, ingr3')
+    recipes = Recipe.search('ingr1, ingr2, ingr3 ')
     assert recipes.size == 2
   end
 

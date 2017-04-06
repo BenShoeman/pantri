@@ -6,7 +6,7 @@ class Recipe < ApplicationRecord
     params = search.split(/,/) # Split by comma
     search_query = ""
     params.each do |param|
-      param = param.strip()
+      param = param.strip().downcase()
       search_query += "ingredients.name ilike '%" + param + "%' or "
     end
     search_query = search_query[0..-5]
