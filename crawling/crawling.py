@@ -169,5 +169,7 @@ def recipe_spider(recipe_url, dbcon):
     except psycopg2.ProgrammingError as e:
         print "SQL Programming Error:", e.message
         dbcon.rollback()
+    except ValueError as e:
+        print "Value error:", e.message
     finally:
         print ""
