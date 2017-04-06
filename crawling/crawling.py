@@ -52,7 +52,7 @@ def recipe_spider(recipe_url, dbcon):
 
             # URL of Image
             try:
-                recipe_imageurl = json_object["image"]
+                recipe_imageurl = json_object["image"]["url"]
             except KeyError:
                 print "No image"
 
