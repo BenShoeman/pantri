@@ -240,6 +240,13 @@ form
   color: #f60;
 }
 
+.recipe-save
+{
+  position: relative;
+  width: 3.25in;
+  height: 3em;
+}
+
 @media screen and (min-aspect-ratio: 3/2)
 {
   body {
@@ -283,4 +290,5 @@ form
     height: calc(100% - 4em);
     top: 0;
   }
+  
 }
