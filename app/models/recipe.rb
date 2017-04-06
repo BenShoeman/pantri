@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   has_many :recipe_ingredients
   has_many :ingredients, :through => :recipe_ingredients
+  has_and_belongs_to_many :users
 
   def self.search(search)
     params = search.split(/,/) # Split by comma
