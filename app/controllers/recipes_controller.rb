@@ -24,6 +24,28 @@ class RecipesController < ApplicationController
   def show
   end
 
+  # Controller for saving a recipe to a user's profile
+
+  def save
+    recipe = Recipe.find(params[:q]) #is q the right thing to use here?
+    user = recipe.user.find(params[:q])
+    # If user is not already added
+    if !user
+      user = User.first
+      user.recipes << recipe
+    end
+  end
+
+  # Controller for unsaving a recipe to a user's profile
+
+  def unsave
+    recipe = Recipe.find(params[:q])
+    user = recipe.user.find(params[:q])
+    if user
+      recipe.user.delete(user)
+    end
+  end
+
   # Commenting out the below because we don't need people to edit recipe entries
   # # GET /recipes/new
   # def new

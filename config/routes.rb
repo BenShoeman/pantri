@@ -8,4 +8,9 @@ Rails.application.routes.draw do
   get 'recipes/index' => 'recipes#index'
   get 'search', to: 'recipes#search', as: :search
   root 'recipes#index'
+
+  # making request for save action on recipe page
+  # unnecessary unless recipe page is shown
+  get 'recipes/:id/save' => 'recipes#save'
+  # need one for index
 end
