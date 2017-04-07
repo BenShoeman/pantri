@@ -61,12 +61,14 @@
               </ul>
             </section>
             <section class ="recipe-save">
-              <p class="recipe-saving">Save Recipe</p>
+    	      <!-- Save button -->
+              <%= submit_tag "Save"%>
+              <!-- this should change from save to saved when button is clicked -->
+              <% link_to (recipe.users ? "Save" : "Saved") %>
             </section>
           </section>
         </a>
       <% end %>
-    <!-- insert new box here -->
     <% end %>
   </section>
 <% end %>
