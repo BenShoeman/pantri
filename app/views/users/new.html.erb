@@ -1,15 +1,21 @@
 <!-- app/views/users/new.html.erb -->
 
-<%= stylesheet_link_tag params[:controller] %>
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+  <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
 
-<h1>Sign up for Pantri</h1>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
 
-<%= form_for :user, url: '/users' do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
 
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password_digest %>
-  Confirm password: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
 
-<% end %>
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+    <%= f.submit "Create Account"%>
+  <% end %>
