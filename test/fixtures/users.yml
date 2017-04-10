@@ -1,9 +1,9 @@
 one:
   name: User1
   email: user.one@example.com
-  password: password
+  password_digest: password
 
 two:
   name: User2
   email: user.two@example.com
-  password: monkey
+  password_digest: monkey
