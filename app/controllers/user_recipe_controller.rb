@@ -25,4 +25,4 @@ end
 
 def user_recip_param
   params.required(:recipe).permit (:recipe , :description) #the params will be the recipe and maybe a breif description of the recipe that the user saved in the user page
-end 
+end
