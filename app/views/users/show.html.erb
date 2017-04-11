@@ -1,3 +1,5 @@
+<!-- app/views/users/show.html.erb -->
+
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-md-4">
@@ -5,6 +7,18 @@
       <h1>
         <%= @user.name %>
       </h1>
+      <h2>
+        <%= link_to "Edit Profile", edit_user_path(@user) %>
+      </h2>
+      <h2>
+      <section class="recipes">
+        <strong>Saved Recipes:</strong>
+      </h2>
+      <% @user.recipes.each do |recipe| %>
+      <p>
+        <%= link_to recipe.name, recipe.recipe_url %>
+      </p>
+      <% end %>
     </section>
   </aside>
 </div>
