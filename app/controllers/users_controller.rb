@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 # For signup form confirmation
 private
   def user_params
-    params.permit(:user, :name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:user, :name, :email, :password, :password_confirmation)
     # deleted require(:user). may need this later but fixed error
   end
 end
