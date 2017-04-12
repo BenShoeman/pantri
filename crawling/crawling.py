@@ -15,7 +15,7 @@ def link_spider(url, dbcon):
     for ul in soup.findAll('ul',{'class' : 'm-PromoList o-Capsule__m-PromoList'}):
         for li in ul.findAll('li',{'class' : 'm-PromoList__a-ListItem'}):
             for a in li.findAll('a'):
-                time.sleep(2.5)
+                time.sleep(1.5)
                 recipe_url = a.get('href')
                 recipe_spider(recipe_url, dbcon)
 
@@ -177,5 +177,9 @@ def recipe_spider(recipe_url, dbcon):
         dbcon.rollback()
     except ValueError as e:
         print "Value error:", e.message
+        dbcon.rollback()
+    except TypeError as e:
+        print "Type error:", e.message
+        dbcon.rollback()
     finally:
         print ""
