@@ -9,7 +9,7 @@ def list
   end
 
 def show
-  @user_ingr = user_ingr.find(params(:id)
+  @user_ingr = user_ingr.find(params(:id))
 end
 
 def create
