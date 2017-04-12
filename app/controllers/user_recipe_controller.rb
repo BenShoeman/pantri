@@ -6,7 +6,7 @@ class User_recipes_controller < ApplicationController
   end
 
   def list
-      @user_recList = user_recList.all
+    @user_recList = user_recList.all
   end
 
   def show  # goal for this is if user wants they can click on saved recipes and the ingredients that go with it.
@@ -25,6 +25,6 @@ class User_recipes_controller < ApplicationController
   end
 
   def user_recip_param
-    params.required(:recipe).permit (:recipe , :description) #the params will be the recipe and maybe a breif description of the recipe that the user saved in the user page
+    params.required(:recipe).permit(:recipe, :description) #the params will be the recipe and maybe a breif description of the recipe that the user saved in the user page
   end
 end
