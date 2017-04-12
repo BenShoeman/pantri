@@ -19,6 +19,7 @@ def create
     else
       @subjects = Subject.all
       render :action => 'edit'
+    end
 end
 
 def user_recipe_ingrediants
