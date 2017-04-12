@@ -128,9 +128,10 @@ def recipe_spider(recipe_url, dbcon):
 
                     # Add other ingredients if we have an "and/or" within the ingredients
                     # We'll have to exit this loop iteration and add them later
-                    if conj_regex.search(ing) is not None:
+                    if conj_removal_regex.search(ing) is not None:
                         subings = conj_regex.split(ing)
                         for subing in subings:
+                            subing = conj_removal_regex.sub('', subing)
                             json_object["recipeIngredient"].append(subing)
                         continue
 
@@ -148,6 +149,11 @@ def recipe_spider(recipe_url, dbcon):
                             cur.execute(query)
                         # Whether we made a new ingredient or got an existing one, get the ID
                         ing_id = cur.fetchone()[0]
+
+                        # Make sure this ingredient wasn't already added
+                        cur.execute("select id from recipe_ingredients where recipe_id = %d and ingredient_id = %d;" % (recipe_id, ing_id))
+                        if cur.rowcount > 0:
+                            continue # Go to next ingredient since this one already exists
 
                         # Now link the recipe and ingredient
                         query = "insert into recipe_ingredients (recipe_id, ingredient_id, created_at, updated_at) values (%d, %d, now(), now());" % (recipe_id, ing_id)
