@@ -15,8 +15,7 @@ subcats = (("123", 2), ("a", 15), ("b", 44), ("c", 73), ("d", 9), ("e", 8),
 def url_crawler():
     istring = "http://www.foodnetwork.com/recipes/a-z/"
 
-    con_string = "host='%s' dbname='%s' user='%s' password='%s'" % (sys.argv[1],
-            sys.argv[2], sys.argv[3], sys.argv[4])
+    con_string = sys.argv[1]
 
     print "Connecting to database -> %s ..." % (con_string)
 
@@ -43,7 +42,7 @@ def url_crawler():
         con.close()
 
 if __name__=="__main__":
-    if len(sys.argv) == 5:
+    if len(sys.argv) == 2:
         url_crawler()
     else:
-        print "Usage:",sys.argv[0],"<host> <dbname> <user> <password>"
+        print "Usage:",sys.argv[0],'"dbname=<dbname> host=<host> user=<user> password=<password>"'
