@@ -15,6 +15,15 @@ body
   font-family: Raleway, Arial, Helvetica, sans-serif;
 }
 
+// For sign up, login links
+header {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 300px;
+    text-align: center;
+  }
+
 #logo
 {
   box-sizing: border-box;
@@ -294,5 +303,5 @@ form
     height: calc(100% - 4em);
     top: 0;
   }
-  
+
 }

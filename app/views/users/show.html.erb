@@ -1,24 +1,65 @@
 <!-- app/views/users/show.html.erb -->
+<%= stylesheet_link_tag params[:controller] %>
+<% provide(:title, :name) %>
 
-<% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= @user.name %>
-      </h1>
-      <h2>
-        <%= link_to "Edit Profile", edit_user_path(@user) %>
-      </h2>
-      <h2>
-      <section class="recipes">
-        <strong>Saved Recipes:</strong>
-      </h2>
-      <% @user.recipes.each do |recipe| %>
-      <p>
-        <%= link_to recipe.name, recipe.recipe_url %>
-      </p>
-      <% end %>
-    </section>
-  </aside>
+<header><%= link_to "Edit Profile", edit_user_path(@user) %></header>
+<div>
+<h1><%= @user.name %></h1>
+
+<section class="recipes">
+  <h3><strong>Saved Recipes:</strong></h3>
+
+  <% @user.recipes.each do |recipe| %>
+<!--    <p><%= link_to recipe.name, recipe.recipe_url %></p> -->
+    <a class="recipe-card-link" target="_blank" href="<%= recipe.recipe_url %>">
+      <section class="recipe-card">
+        <section class="recipe-image" style="background-image:url('<%= recipe.image_url %>');"></section>
+        <section class="recipe-info">
+          <h1><%= recipe.name %></h1>
+          <p class="recipe-servings">Serves <%= recipe.servings %></p>
+          <p class="recipe-time">
+            Prep:
+            <% if recipe.prep_time < 60 %>
+              <%= recipe.prep_time %> m
+            <% else %>
+              <!-- Three significant digits or less are printed -->
+              <%= sprintf('%.3g', Float(recipe.prep_time) / 60) %> h
+            <% end %>
+          </p>
+          <p class="recipe-time">
+            Cook:
+            <% if recipe.cook_time < 60 %>
+              <%= recipe.cook_time %> m
+            <% else %>
+              <!-- Three significant digits or less are printed -->
+              <%= sprintf('%.3g', Float(recipe.cook_time) / 60.0) %> h
+            <% end %>
+          </p>
+          <p class="recipe-time">
+            Ready in:
+            <% if (recipe.prep_time + recipe.cook_time) < 60 %>
+              <%= recipe.prep_time + recipe.cook_time %> m
+            <% else %>
+              <!-- Three significant digits or less are printed -->
+              <%= sprintf('%.3g', Float(recipe.total_time) / 60.0) %> h
+            <% end %>
+          </p>
+          <ul>
+            <!-- We do the two parts separately so relevant ingredients are at the top -->
+            <% recipe.ingredients.collect(&:name).each do |ingredient| %>
+              <!-- Otherwise go with default styling -->
+              <li><%= ingredient %></li>
+            <% end %>
+          </ul>
+        </section>
+        <section class ="recipe-save">
+          <!-- Save button -->
+          <%= submit_tag "Save"%>
+          <!-- this should change from save to saved when button is clicked -->
+          <% link_to (recipe.users ? "Save" : "Saved") %>
+        </section>
+      </section>
+    </a>
+  <% end %>
+</section>
 </div>

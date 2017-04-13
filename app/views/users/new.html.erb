@@ -1,21 +1,24 @@
 <!-- app/views/users/new.html.erb -->
+<%= stylesheet_link_tag params[:controller] %>
+<% provide(:title, "Sign Up for Pantri") %>
 
-<% provide(:title, 'Sign up') %>
 <h1>Sign up for Pantri</h1>
+
   <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages' %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
+    <p><%= f.label :name, class: 'form' %></p>
+    <p><%= f.text_field :name, class: 'form-control' %></p>
 
-    <%= f.label :email %>
-    <%= f.email_field :email, class: 'form-control' %>
+    <p><%= f.label :email, class: 'form' %></p>
+    <p><%= f.email_field :email, class: 'form-control' %></p>
 
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
+    <p><%= f.label :password , class: 'form'%></p>
+    <p><%= f.password_field :password, class: 'form-control' %></p>
 
-    <%= f.label :password_confirmation, "Confirmation" %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <p><%= f.label :password_confirmation, "Confirm Password", class: 'form' %></p>
+    <p><%= f.password_field :password_confirmation, class: 'form-control' %></p>
 
-    <%= f.submit "Create Account"%>
-  <% end %>
+    <p><%= f.submit "Create Account"%></p>
+
+<% end %>
