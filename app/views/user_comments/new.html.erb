@@ -1,0 +1,32 @@
+<%= form_for :user_comment, url: user_comments_path do |c| %>
+  <h1>How are we doing?</h1>
+  <% if @user_comment.errors.any? %>
+   <div id = "error_explanation">
+     <h2>
+       <%= pluralize(@user_comment.errors.count, "error") %>
+        prohibited this article from being saved:
+     </h2>
+     <ul>
+       <% @user_comment.errors.full_messages.each do |msg| %>
+         <li><%= msg %></li>
+       <% end %>
+     </ul>
+   </div>
+  <% end %>
+
+  <p>
+    <%= c.label :subject %><br>
+    <%= c.text_field :subject %>
+  </p>
+ 
+  <p>
+    <%= c.label :comment %><br>
+    <%= c.text_area :comment %>
+  </p>
+ 
+  <p>
+    <%= c.submit :submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', user_comments_path %>

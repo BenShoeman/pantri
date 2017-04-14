@@ -1,0 +1,20 @@
+<h1>Comments</h1>
+
+<table>
+  
+  <tr>
+    <th>Subject</th>
+  </tr>
+
+  <% @user_comments.each do |cmmt| %>
+    <tr>
+      <td><%= cmmt.subject %></td>
+      <td><%= link_to 'Show', user_comment_path(cmmt) %></td>
+      <td><%= link_to 'Delete', user_comment_path(cmmt), method: :delete, data: { confirm: 'Delete comment?'} %></td>
+    </tr>
+  <% end %>
+
+</table>
+
+<p><%= link_to 'Make a comment', new_user_comment_path %></p>
+<p><%= link_to 'Home', controller: 'recipes' %></p>
