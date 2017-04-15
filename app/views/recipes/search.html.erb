@@ -9,65 +9,76 @@
   <% end %>
 </section>
 
-<% if (params.has_key?(:q)) %>
+<% if params.has_key?(:q) %>
   <section id="recipe-container">
     <% if @recipes.size == 0 %>
       No Recipes Found
     <% else %>
       <% @recipes.each do |recipe| %>
-        <a class="recipe-card-link" target="_blank" href="<%= recipe.recipe_url %>">
-          <section class="recipe-card">
+        <section class="recipe-card">
+          <a class="recipe-card-link" target="_blank" href="<%= recipe.recipe_url %>">
             <section class="recipe-image" style="background-image:url('<%= recipe.image_url %>');"></section>
             <section class="recipe-info">
-              <h1><%= recipe.name %></h1>
-              <p class="recipe-servings">Serves <%= recipe.servings %></p>
-              <p class="recipe-time">
-                Prep:
-                <% if recipe.prep_time < 60 %>
-                  <%= recipe.prep_time %> m
-                <% else %>
-                  <!-- Three significant digits or less are printed -->
-                  <%= sprintf('%.3g', Float(recipe.prep_time) / 60) %> h
-                <% end %>
-              </p>
-              <p class="recipe-time">
-                Cook:
-                <% if recipe.cook_time < 60 %>
-                  <%= recipe.cook_time %> m
-                <% else %>
-                  <!-- Three significant digits or less are printed -->
-                  <%= sprintf('%.3g', Float(recipe.cook_time) / 60.0) %> h
-                <% end %>
-              </p>
-              <p class="recipe-time">
-                Ready in:
-                <% if (recipe.prep_time + recipe.cook_time) < 60 %>
-                  <%= recipe.prep_time + recipe.cook_time %> m
-                <% else %>
-                  <!-- Three significant digits or less are printed -->
-                  <%= sprintf('%.3g', Float(recipe.total_time) / 60.0) %> h
-                <% end %>
-              </p>
+              <h1><%= truncate(recipe.name, :length => 42) %></h1>
+
+              <% if recipe.servings > 0 %><p class="recipe-servings">Serves <%= recipe.servings %></p><% end %>
+
+              <% if recipe.prep_time > 0 %>
+                <p class="recipe-time">
+                  Prep:
+                  <% if recipe.prep_time < 60 %>
+                    <%= recipe.prep_time %> m
+                  <% else %>
+                    <!-- Three significant digits or less are printed -->
+                    <%= sprintf('%.3g', Float(recipe.prep_time) / 60) %> h
+                  <% end %>
+                </p>
+              <% end %>
+
+              <% if recipe.cook_time > 0 %>
+                <p class="recipe-time">
+                  Cook:
+                  <% if recipe.cook_time < 60 %>
+                    <%= recipe.cook_time %> m
+                  <% else %>
+                    <!-- Three significant digits or less are printed -->
+                    <%= sprintf('%.3g', Float(recipe.cook_time) / 60.0) %> h
+                  <% end %>
+                </p>
+              <% end %>
+
+              <% if recipe.total_time > 0 %>
+                <p class="recipe-time">
+                  Ready in:
+                  <% if recipe.total_time < 60 %>
+                    <%= recipe.total_time %> m
+                  <% else %>
+                    <!-- Three significant digits or less are printed -->
+                    <%= sprintf('%.3g', Float(recipe.total_time) / 60.0) %> h
+                  <% end %>
+                </p>
+              <% end %>
+
               <ul>
                 <!-- We do the two parts separately so relevant ingredients are at the top -->
                 <% recipe.ingredients.collect(&:name).each do |ingredient| %>
-                  <!-- Mark as relevant if it matches a parameter -->
-                  <% if ingredient.include? params[:q].downcase() %><li class="relevant"><%= ingredient %></li><% end %>
+                  <% ings = params[:q].split(/,/) %>
+                  <% if ings.any? { |ing| ingredient.include? ing.strip().downcase() } and not ingredient.blank? %><li class="relevant"><%= ingredient %></li><% end %>
                 <% end %>
                 <% recipe.ingredients.collect(&:name).each do |ingredient| %>
-                  <!-- Otherwise go with default styling -->
-                  <% if not ingredient.include? params[:q].downcase() %><li><%= ingredient %></li><% end %>
+                  <% ings = params[:q].split(/,/) %>
+                  <% if not ings.any? { |ing| ingredient.include? ing.strip().downcase() } and not ingredient.blank? %><li><%= ingredient %></li><% end %>
                 <% end %>
               </ul>
             </section>
-            <section class ="recipe-save">
-    	      <!-- Save button -->
-              <%= submit_tag "Save"%>
-              <!-- this should change from save to saved when button is clicked -->
-              <% link_to (recipe.users ? "Save" : "Saved") %>
-            </section>
+          </a>
+          <section class ="recipe-save">
+          <!-- Save button -->
+            <%= submit_tag "Save" %>
+            <!-- this should change from save to saved when button is clicked -->
+            <% link_to (recipe.users ? "Save" : "Saved") %>
           </section>
-        </a>
+        </section>
       <% end %>
     <% end %>
   </section>

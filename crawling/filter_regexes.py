@@ -9,4 +9,4 @@ unit_regex = re.compile(r'^(a |about )?(few |rounded )?(t|tsp|teaspoon|tbl|tbs|t
 adjectives_regex = re.compile(r'(?:(?<=[ \.\-])|(?<=^))(roasted|(un)?salted|crispy?|cooked|refrigerated|small|medium|large|diced|chopped|sweetened|fresh(ly)?|sliced|salted|grated|coarse(ly)?|fine(ly)?|minced|toasted|pure|lightly|packed|crushed|original|no\-stick|jumbo|dried|thin(ly)?|thick|chinese|mini|kraft|deluxe|process|deli|trimmed|softened|good|quality|lots|smoked|prepared|firm(ly)?|recipe|quick|hungarian|nancys|one|two|three|four|five|six|seven|eight|nine|ten|your|favorite|sized?|shredded|boneless|skinless|extra\-virgin|loosely|jamies|store\-bought|premium|warm|ice|cold|neelys?|frozen|pickled|individual|ripe|lean|(un)?filtered|leftover|low\-sodium|full|pre|other|blanched|mixed|basic|peeled|beaten|nonstick|stackable|reduced\-fat|plain|several|roughly|cleaned|pureed|deveined|\d+\-(inch|ounce)|to)[ ,\-]')
 punctuation_regex = re.compile(r'[\"\'\!/\*\:]*')
 conj_regex = re.compile(r',? (?:and|or) ')
-conj_removal_regex = re.compile(r'(and|or)')
+conj_removal_regex = re.compile(r'(?:(?<= )|(?<=^))(and|or)(?:(?= )|(?=$))')

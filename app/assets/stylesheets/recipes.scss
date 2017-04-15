@@ -142,30 +142,31 @@ form
   background-color: white;
 }
 
-.recipe-card-link
-{
-  margin-left: 1em;
-  margin-right: 1em;
-  margin-bottom: 2em;
-  height: 15em;
-}
-
 .recipe-card
 {
   position: relative;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 2em;
   width: 3.25in;
-  height: 15em;
-  box-shadow: 0 0 1em rgba(0,0,0,0.6);
+  min-height: 16em;
 
+  box-shadow: 0 0 1em rgba(0,0,0,0.6);
   color: black;
   font-size: 1em;
+}
+
+.recipe-card-link
+{
+  width: 100%;
+  height: 100%;
 }
 
 .recipe-image
 {
   position: absolute;
   width: 100%;
-  height: calc(100% - 5em);
+  height: 9em;
   top: 0;
 
   background-position: center;
@@ -178,14 +179,15 @@ form
   position: absolute;
   overflow: hidden;
   width: calc(100% - 0.2in);
-  height: 6em;
-  bottom: 0;
+  min-height: 7em;
+  top: 9em;
   padding: 0.1in;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 
   background-color: white;
+  color: black;
 
   font-size: 0.9em;
 }
@@ -222,6 +224,8 @@ form
   margin: 0;
   padding: 0;
   width: 100%;
+  max-height: 2.75em;
+  // overflow: auto;
 }
 
 .recipe-info ul > li
@@ -243,13 +247,33 @@ form
 
 .recipe-save
 {
-  position: relative;
-  left: 240px;
-  width: 3.25in;
+  position: absolute;
+  top: 0.8em;
+  right: 0.8em;
+  width: 1.75cm;
   height: 2em;
-  padding: 0.1in;
+}
 
-  font-size: 0.9em;
+.recipe-save input
+{
+  width: 100%;
+  height: 100%;
+
+  background-color: #888;
+  color: white;
+  border: 0px;
+  box-shadow: 0 0 1.5em rgba(255,255,255,0.6);
+
+  font-size: 1.1em;
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+
+  transition: 0.25s;
+}
+
+.recipe-save input:hover
+{
+  background-color: #f60;
+  transition: 0.25s;
 }
 
 @media screen and (min-aspect-ratio: 3/2)

@@ -8,13 +8,18 @@ class Recipe < ApplicationRecord
     search_query = ""
     params.each do |param|
       param = param.strip().downcase()
-      search_query += "ingredients.name ilike '%" + param + "%' or "
+      if not param.blank?
+        search_query += "#{Ingredient.table_name}.name ilike '%" + param + "%' or "
+      end
     end
     search_query = search_query[0..-5]
 
-    recipes = Recipe.joins(:recipe_ingredients).joins(:ingredients).
-      where(search_query).distinct
-      # where("ingredients.name ilike ?", "%#{search}%").uniq
+    recipes = Recipe.
+      joins(:recipe_ingredients).joins(:ingredients).
+      where(search_query).
+      group("#{Recipe.table_name}.id").
+      order("count(#{RecipeIngredient.table_name}.id) desc")
+
     return recipes
   end
 
