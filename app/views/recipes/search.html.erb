@@ -11,6 +11,7 @@
 
 <% if params.has_key?(:q) %>
   <section id="recipe-container">
+    <% @recipes[0] %>
     <% if @recipes.size == 0 %>
       No Recipes Found
     <% else %>

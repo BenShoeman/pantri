@@ -26,9 +26,4 @@ class Recipe < ApplicationRecord
   def self.none()
     return where("1 = 0")
   end
-
-  # def self.getIngredients(search)
-  #   Recipe.joins(:recipe_ingredients).joins(:ingredients).
-  #     where("ingredients.name ILIKE ?", "%#{search}%")
-  # end
 end
