@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   get 'recipes/index' => 'recipes#index'
   get 'search', to: 'recipes#search', as: :search
   root 'recipes#index'
-
+  get '/login' to: 'session#new'
+  get '/login' to: 'session#create'
+  get '/logout' to: 'session#destroy'
+  #resources :users
   # making request for save action on recipe page
   # unnecessary unless recipe page is shown
   get 'recipes/:id/save' => 'recipes#save'
