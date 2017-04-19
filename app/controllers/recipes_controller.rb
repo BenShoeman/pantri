@@ -34,14 +34,14 @@ class RecipesController < ApplicationController
   end
 
   # Controller for unsaving a recipe to a user's profile
-
   def unsave
     recipe = Recipe.find(params[:id])
     # Remove this once users can log in
     current_user = User.first
     # Logged in user will be able to remove recipe from saved
     if current_user
-      recipe.current_user.delete(current_user)
+      recipe.users.delete(current_user)
+      redirect_to :back
     end
   end
 

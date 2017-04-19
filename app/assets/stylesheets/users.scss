@@ -7,7 +7,8 @@ body
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-image: url("../img/pho.png");
+  //background-image: image-url("pho.png");
+  // Make this one the same used after search?????
   background-position: center top;
   background-size: 100% auto;
 
@@ -23,9 +24,6 @@ body
   }
 }
 
-h1{
-  padding-top: 1em;
-}
 
 #logo{
   box-sizing: border-box;
@@ -38,6 +36,17 @@ h1{
   padding: 2em;
   margin-top: 5em;
   margin-bottom: 2em;
+}
+
+.search #logo
+{
+  width: 12em;
+  height: 1em;
+  margin: 1em;
+
+  background-image: image-url('logowhite.gif');
+  background-position: left;
+  cursor: pointer;
 }
 
 #search_bar{
@@ -53,23 +62,51 @@ h1{
   color: rgba(75,75,75,1);
 }
 
-#sButton{
+.search #search_bar
+{
+  width: 100%;
+  padding-top: 0.25em;
+  padding-left: 0.25em;
+  // font-size: 3em;
+}
+
+#sButton
+{
   box-sizing: border-box;
   width: 10%;
   height: 5em;
+  background-image: image-url("search.gif");
+  background-color: #ddd;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 60%;
   border: none;
+
+  cursor: pointer;
 }
 
-form{
+.search #sButton
+{
+  height: 100%;
+}
+
+form
+{
   box-sizing: border-box;
   width: 80%;
-  position: absolute;
-  top: 100px;
   margin-left: 10%;
   margin-right: 10%;
-  display: block;
+  display: flex;
+  height:5em;
+  overflow: hidden;
 }
 
+.search form
+{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
 
 input {
     width: 80%;
@@ -91,19 +128,6 @@ header {
     display: inline-block;
   }
 
-div{
-    width: 900px;
-}
-
-
-
-home {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    width: 300px;
-    text-align: center;
-}
 
 #logo-search-container
 {
@@ -135,13 +159,17 @@ home {
 
   /* Same width as form for consistency */
   width: 80%;
-  min-height: calc(100vh - 8em);
+  height: calc(100vh - 8em);
+  overflow: auto;
   padding-left: 10%;
   padding-right: 10%;
-  padding-top: 8em;
+  padding-top: 2em;
+
+  position: absolute;
+  top: 6em;
   z-index: 0;
 
-  background-color: white;
+  background-color: rgba(255,255,255,0.9);
 }
 
 .recipe-card-link
@@ -245,13 +273,33 @@ home {
 
 .recipe-save
 {
-  position: relative;
-  left: 212px;
-  width: 1in;
-  height: 1em;
-  padding: 0.1in;
+  position: absolute;
+  top: 0.8em;
+  right: 0.8em;
+  width: 1.75cm;
+  height: 2em;
+}
+
+.recipe-save input
+{
+  width: 100%;
+  height: 100%;
+
+  background-color: #888;
+  color: white;
+  border: 0px;
+  box-shadow: 0 0 1.5em rgba(255,255,255,0.6);
+
   font-size: 0.8em;
-  text-align: center;
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+
+  transition: 0.25s;
+}
+
+.recipe-save input:hover
+{
+  background-color: #f60;
+  transition: 0.25s;
 }
 
 @media screen and (min-aspect-ratio: 3/2)

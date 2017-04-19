@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   resource :recipes do
     get 'save', :on => :collection
   end
+  post 'recipes/:id/unsave' => 'recipes#unsave'
 
 end

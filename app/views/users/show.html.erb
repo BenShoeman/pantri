@@ -1,7 +1,12 @@
 <!-- app/views/users/show.html.erb -->
+
 <%= stylesheet_link_tag params[:controller] %>
 <% provide(:title, :name) %>
-
+<!--
+<section id="logo-search-container" class="search">
+  <header id="logo" onclick="window.location='/'"></header>
+</section>
+ -->
 <header><%= link_to "Edit Profile", edit_user_path(@user) %></header>
 <div>
 <h1><%= @user.name %></h1>
@@ -10,7 +15,6 @@
   <h3><strong>Saved Recipes:</strong></h3>
 
   <% @user.recipes.each do |recipe| %>
-<!--    <p><%= link_to recipe.name, recipe.recipe_url %></p> -->
     <a class="recipe-card-link" target="_blank" href="<%= recipe.recipe_url %>">
       <section class="recipe-card">
         <section class="recipe-image" style="background-image:url('<%= recipe.image_url %>');"></section>
@@ -52,15 +56,17 @@
             <% end %>
           </ul>
         </section>
+      </a>
+      <section class ="recipe-save">
+        <!-- Save button -->
+        <%= form_tag(:controller => 'recipes', :action => 'save', :method => 'post', :id => recipe.id ) do %>
+          <%= submit_tag "Save"%>
+        <% end %>
+        <!-- change these two buttons to one button that toggles between actions -->
+        <%= form_tag(:controller => 'recipes', :action => 'unsave', :method => 'post', :id => recipe.id ) do %>
+          <%= submit_tag "Unsave"%>
+        <% end %>
       </section>
-    </a>
-    <section class ="recipe-save">
-    <!-- Save button -->
-      <%= form_tag(:controller => 'recipes', :action => 'save', :method => 'post', :id => recipe.id ) do %>
-        <%= submit_tag "Save"%>
-      <% end %>
-      <!-- this should change from save to saved when button is clicked -->
-      <% link_to (recipe.users ? "Save" : "Saved") %>
     </section>
   <% end %>
 </section>

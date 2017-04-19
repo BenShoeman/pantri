@@ -78,6 +78,10 @@
           <%= form_tag(:controller => 'recipes', :id => recipe.id, :action => 'save', :method => 'post') do %>
             <%= submit_tag "Save" %>
           <% end %>
+          <!-- change these two buttons to one button that toggles when saved/unsaved -->
+          <%= form_tag(:controller => 'recipes', :action => 'unsave', :method => 'post', :id => recipe.id ) do %>
+            <%= submit_tag "Unsave"%>
+          <% end %>
           </section>
         </section>
       <% end %>
