@@ -21,7 +21,7 @@
             Prep:
             <% if recipe.prep_time < 60 %>
               <%= recipe.prep_time %> m
-            <% else %>
+              <% else %>
               <!-- Three significant digits or less are printed -->
               <%= sprintf('%.3g', Float(recipe.prep_time) / 60) %> h
             <% end %>
@@ -40,7 +40,7 @@
             <% if (recipe.prep_time + recipe.cook_time) < 60 %>
               <%= recipe.prep_time + recipe.cook_time %> m
             <% else %>
-              <!-- Three significant digits or less are printed -->
+               <!-- Three significant digits or less are printed -->
               <%= sprintf('%.3g', Float(recipe.total_time) / 60.0) %> h
             <% end %>
           </p>
@@ -52,14 +52,16 @@
             <% end %>
           </ul>
         </section>
-        <section class ="recipe-save">
-          <!-- Save button -->
-          <%= submit_tag "Save"%>
-          <!-- this should change from save to saved when button is clicked -->
-          <% link_to (recipe.users ? "Save" : "Saved") %>
-        </section>
       </section>
     </a>
+    <section class ="recipe-save">
+    <!-- Save button -->
+      <%= form_tag(controller: "recipes", action: "save", method: "post") do %>
+        <%= submit_tag "Save"%>
+      <% end %>
+      <!-- this should change from save to saved when button is clicked -->
+      <% link_to (recipe.users ? "Save" : "Saved") %>
+    </section>
   <% end %>
 </section>
 </div>

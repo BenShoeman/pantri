@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+  def index
+  end
+
   def show
     @user = User.find(params[:id])
   end
@@ -35,6 +39,7 @@ class UsersController < ApplicationController
 
 # For signup form confirmation
 private
+
   def user_params
     params.require(:user).permit(:user, :name, :email, :password, :password_confirmation)
     # deleted require(:user). may need this later but fixed error
