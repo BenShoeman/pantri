@@ -9,9 +9,12 @@ Rails.application.routes.draw do
   get 'recipes/index' => 'recipes#index'
   get 'search', to: 'recipes#search', as: :search
   root 'recipes#index'
-#  get '/login' to: 'session#new'
-#  get '/login' to: 'session#create'
-#  get '/logout' to: 'session#destroy'
+
+ # These currently need to be commented out in order to run the rails server, that is what the error is from
+  get '/login' to: 'session#new'
+  get '/login' to: 'session#create'
+  get '/logout' to: 'session#destroy'
+  
   #resources :users
   # making request for save action on recipe page
   # get 'recipes/:id/save' => 'recipes#save'
