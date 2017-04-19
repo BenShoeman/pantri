@@ -9,12 +9,21 @@ Rails.application.routes.draw do
   get 'recipes/index' => 'recipes#index'
   get 'search', to: 'recipes#search', as: :search
   root 'recipes#index'
+
+ # These currently need to be commented out in order to run the rails server, that is what the error is from
   get '/login' to: 'session#new'
   get '/login' to: 'session#create'
   get '/logout' to: 'session#destroy'
+  
   #resources :users
   # making request for save action on recipe page
-  # unnecessary unless recipe page is shown
-  get 'recipes/:id/save' => 'recipes#save'
-  # need one for index
+  # get 'recipes/:id/save' => 'recipes#save'
+  # request for save on index
+  post 'recipes/:id/save' => 'recipes#save'
+
+  resource :recipes do
+    get 'save', :on => :collection
+  end
+  post 'recipes/:id/unsave' => 'recipes#unsave'
+
 end
