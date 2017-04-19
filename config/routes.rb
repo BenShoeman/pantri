@@ -9,7 +9,20 @@ Rails.application.routes.draw do
   get 'recipes/index' => 'recipes#index'
   get 'search', to: 'recipes#search', as: :search
   root 'recipes#index'
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+  get '/login' to: 'session#new'
+  get '/login' to: 'session#create'
+  get '/logout' to: 'session#destroy'
+=======
+#  get '/login' to: 'session#new'
+#  get '/login' to: 'session#create'
+#  get '/logout' to: 'session#destroy'
+>>>>>>> Stashed changes
+  #resources :users
+>>>>>>> Stashed changes
   # making request for save action on recipe page
   get 'recipes/:id/save' => 'recipes#save'
   # need one for index
