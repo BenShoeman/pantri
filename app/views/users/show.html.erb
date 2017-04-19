@@ -56,7 +56,7 @@
     </a>
     <section class ="recipe-save">
     <!-- Save button -->
-      <%= form_tag(controller: "recipes", action: "save", method: "post") do %>
+      <%= form_tag(:controller => 'recipes', :action => 'save', :method => 'post', :id => recipe.id ) do %>
         <%= submit_tag "Save"%>
       <% end %>
       <!-- this should change from save to saved when button is clicked -->

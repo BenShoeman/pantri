@@ -75,11 +75,9 @@
           </a>
           <section class ="recipe-save">
           <!-- Save button -->
-          <%= form_tag(action: "save", method: "post", :recipe_id => id) do %>
+          <%= form_tag(:controller => 'recipes', :id => recipe.id, :action => 'save', :method => 'post') do %>
             <%= submit_tag "Save" %>
-            <!-- this should change from save to saved when button is clicked -->
-            <% link_to (recipe.users ? "Save" : "Saved") %>
-           <% end %>
+          <% end %>
           </section>
         </section>
       <% end %>

@@ -25,24 +25,23 @@ class RecipesController < ApplicationController
   end
 
   # Controller for saving a recipe to a user's profile
-
   def save
-    recipe = Recipe.find(params[:q])
-    user = recipe.user.find(params[:q])
-    # If user is not already added
-    if !user
-      user = User.first
-      user.recipes << recipe
-    end
+    recipe = Recipe.find(params[:id])
+    # Remove this once users can log in
+    current_user = User.first
+    # Logged in user will get the recipe saved to them
+    current_user.recipes << recipe
   end
 
   # Controller for unsaving a recipe to a user's profile
 
   def unsave
-    recipe = Recipe.find(params[:q])
-    user = recipe.user.find(params[:q])
-    if user
-      recipe.user.delete(user)
+    recipe = Recipe.find(params[:id])
+    # Remove this once users can log in
+    current_user = User.first
+    # Logged in user will be able to remove recipe from saved
+    if current_user
+      recipe.current_user.delete(current_user)
     end
   end
 
