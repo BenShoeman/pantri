@@ -2,6 +2,9 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients
   has_many :ingredients, :through => :recipe_ingredients
   has_and_belongs_to_many :users
+  def saved_at
+    nil
+  end
 
   def self.search(search)
     params = search.split(/,/) # Split by comma
@@ -26,4 +29,27 @@ class Recipe < ApplicationRecord
   def self.none()
     return where("1 = 0")
   end
+
+  def saved?
+    saved_at != nil
+  end
+
+  def save
+    self.saved_at = Time.now
+  end
+
+  def save!
+    save
+    save!
+  end
+
+  def unsave
+    self.saved_at = nil
+  end
+
+  def unsave!
+    unsave
+    save!
+  end
+
 end

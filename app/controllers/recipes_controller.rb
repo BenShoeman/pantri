@@ -24,26 +24,39 @@ class RecipesController < ApplicationController
   def show
   end
 
-  # Controller for saving a recipe to a user's profile
   def save
     recipe = Recipe.find(params[:id])
     # Remove this once users can log in
     current_user = User.first
-    # Logged in user will get the recipe saved to them
     current_user.recipes << recipe
+    # self.saved_at = Time.now
   end
 
-  # Controller for unsaving a recipe to a user's profile
+  def save?
+    saved_at != nil
+  end
+
+  def save!
+    save
+    save!
+  end
+
   def unsave
     recipe = Recipe.find(params[:id])
     # Remove this once users can log in
     current_user = User.first
-    # Logged in user will be able to remove recipe from saved
     if current_user
       recipe.users.delete(current_user)
       redirect_to :back
     end
+    # self.favorited_at = nil
   end
+
+  def unsave!
+    unsave
+    save!
+  end
+
 
   # Commenting out the below because we don't need people to edit recipe entries
   # # GET /recipes/new
