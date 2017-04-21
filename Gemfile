@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.2'
 
 # Make app not take a shit on heroku
 gem 'puma_worker_killer'
+# Run queries only when we need to
+gem 'workless'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
