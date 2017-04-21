@@ -30,6 +30,8 @@ class Recipe < ApplicationRecord
     return where("1 = 0")
   end
 
+
+
   def saved?
     saved_at != nil
   end

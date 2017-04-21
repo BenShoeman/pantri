@@ -26,10 +26,8 @@ class RecipesController < ApplicationController
 
   def save
     recipe = Recipe.find(params[:id])
-    # Remove this once users can log in
-    current_user = User.first
     current_user.recipes << recipe
-    # self.saved_at = Time.now
+    #self.saved_at = Time.now
   end
 
   def save?
@@ -43,8 +41,6 @@ class RecipesController < ApplicationController
 
   def unsave
     recipe = Recipe.find(params[:id])
-    # Remove this once users can log in
-    current_user = User.first
     if current_user
       recipe.users.delete(current_user)
       redirect_to :back
