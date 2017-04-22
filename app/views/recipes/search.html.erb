@@ -68,7 +68,10 @@
             </section>
           </a>
           <section class ="recipe-save">
-          <!-- Save button -->
+            <%= div_for(recipe, class: recipe_url(recipe)) do %>
+              <%= link_to_toggle_recipe_save recipe %>
+            <% end %>
+            
           <%= form_tag(:controller => 'recipes', :id => recipe.id, :action => 'save', :method => 'post') do %>
             <%= submit_tag "Save" %>
           <% end %>

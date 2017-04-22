@@ -1,9 +1,11 @@
 one:
+  id: 1
   name: User1
   email: user.one@example.com
-  password_digest: password
+  password_digest: <%= User.digest('password') %>
 
 two:
+  id: 2
   name: User2
   email: user.two@example.com
-  password_digest: monkey
+  password_digest: <%= User.digest('monkey') %>
