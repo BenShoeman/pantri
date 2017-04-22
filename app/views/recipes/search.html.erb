@@ -73,14 +73,14 @@
     <p id="navmenu">
       <% if params.has_key?(:p) %>
         <% if Integer(params[:p]) > 1 %>
-          <a href="<%= root_url + "/search?q=#{params[:q]}&p=#{Integer(params[:p])-1}" %>">&larr; Previous</a>
+          <a href="<%= root_url + "search?q=#{params[:q]}&p=#{Integer(params[:p])-1}" %>">&larr; Previous</a>
         <% end %>
         <% if @recipes.size == 16 %>
-          <a href="<%= root_url + "/search?q=#{params[:q]}&p=#{Integer(params[:p])+1}" %>">Next &rarr;</a>
+          <a href="<%= root_url + "search?q=#{params[:q]}&p=#{Integer(params[:p])+1}" %>">Next &rarr;</a>
         <% end %>
       <% else %>
         <% if @recipes.size == 16 %>
-          <a href="<%= root_url + "/search?q=#{params[:q]}&p=2" %>">Next &rarr;</a>
+          <a href="<%= root_url + "search?q=#{params[:q]}&p=2" %>">Next &rarr;</a>
         <% end %>
       <% end %>
     </p>
