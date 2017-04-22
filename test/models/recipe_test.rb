@@ -1,11 +1,6 @@
 require 'test_helper'
 
 class RecipeTest < ActiveSupport::TestCase
-  test "should return nothing with none()" do
-    recipes = Recipe.none()
-    assert recipes.size == 0
-  end
-
   test "should return 1 recipe with search('ingr1')" do
     recipes = Recipe.search('ingr1')
     assert recipes.size == 1

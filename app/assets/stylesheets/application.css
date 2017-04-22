@@ -14,3 +14,36 @@
  *= require normalize
  * require_tree .
  */
+
+#login
+{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 36pt;
+
+  background-color: white;
+  font-size: 12pt;
+
+  box-shadow: 0 0 18pt rgba(0,0,0,0.6);
+}
+
+#signBtn
+{
+  float: left;
+  margin: 0;
+  padding: 12pt;
+}
+
+#signBtn a
+{
+  /*Add a attributes here*/
+}
+
+#feedbackBtn
+{
+  float: right;
+  margin: 0;
+  padding: 12pt;
+}

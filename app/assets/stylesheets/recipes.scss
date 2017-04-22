@@ -15,7 +15,6 @@ body
   font-family: Raleway, Arial, Helvetica, sans-serif;
 }
 
-
 #logo
 {
   box-sizing: border-box;
@@ -133,7 +132,7 @@ form
 
   /* Same width as form for consistency */
   width: 80%;
-  height: calc(100vh - 8em);
+  height: calc(100vh - 8em - 36pt);
   overflow: auto;
   padding-left: 10%;
   padding-right: 10%;
@@ -282,6 +281,13 @@ form
 {
   background-color: #f60;
   transition: 0.25s;
+}
+
+#navmenu
+{
+  width: 100%;
+  margin-bottom: 24pt;
+  text-align: center;
 }
 
 @media screen and (min-aspect-ratio: 3/2)

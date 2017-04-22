@@ -3,8 +3,10 @@ class Recipe < ApplicationRecord
   has_many :ingredients, :through => :recipe_ingredients
   has_and_belongs_to_many :users
 
-  def self.search(search)
-    params = search.split(/,/) # Split by comma
+  def self.search(search, page = 1)
+    items_per_page = 16
+
+    params = search.split(/,/)
     search_query = ""
     params.each do |param|
       param = param.strip().downcase()
@@ -18,12 +20,9 @@ class Recipe < ApplicationRecord
       joins(:recipe_ingredients).joins(:ingredients).
       where(search_query).
       group("#{Recipe.table_name}.id").
-      order("count(#{RecipeIngredient.table_name}.id) desc")
+      order("count(#{Ingredient.table_name}.id) desc").
+      limit(items_per_page).offset((page-1) * items_per_page)
 
     return recipes
-  end
-
-  def self.none()
-    return where("1 = 0")
   end
 end

@@ -11,7 +11,7 @@
 
 <% if params.has_key?(:q) %>
   <section id="recipe-container">
-    <% @recipes[0] %>
+    <% ings = params[:q].split(/,/) %>
     <% if @recipes.size == 0 %>
       No Recipes Found
     <% else %>
@@ -61,14 +61,8 @@
               <% end %>
 
               <ul>
-                <!-- We do the two parts separately so relevant ingredients are at the top -->
-                <% recipe.ingredients.collect(&:name).each do |ingredient| %>
-                  <% ings = params[:q].split(/,/) %>
-                  <% if ings.any? { |ing| ingredient.include? ing.strip().downcase() } and not ingredient.blank? %><li class="relevant"><%= ingredient %></li><% end %>
-                <% end %>
-                <% recipe.ingredients.collect(&:name).each do |ingredient| %>
-                  <% ings = params[:q].split(/,/) %>
-                  <% if not ings.any? { |ing| ingredient.include? ing.strip().downcase() } and not ingredient.blank? %><li><%= ingredient %></li><% end %>
+                <% @ingredients.select { |e| e.recipe_id == recipe.id }.each do |ing| %>
+                  <li<% if ings.any? { |i| ing.name.include? i.strip().downcase() } %> class="relevant"<% end %>><%= ing.name %></li>
                 <% end %>
               </ul>
             </section>
@@ -86,5 +80,20 @@
         </section>
       <% end %>
     <% end %>
+    <p id="navmenu">
+      <% if params.has_key?(:p) %>
+        <% if Integer(params[:p]) > 1 %>
+          <a href="<%= root_url + "/search?q=#{params[:q]}&p=#{Integer(params[:p])-1}" %>">&larr; Previous</a>
+        <% end %>
+        <% if Integer(params[:p]) > 1 and @recipes.size == 16 %>|<% end %>
+        <% if @recipes.size == 16 %>
+          <a href="<%= root_url + "/search?q=#{params[:q]}&p=#{Integer(params[:p])+1}" %>">Next &rarr;</a>
+        <% end %>
+      <% else %>
+        <% if @recipes.size == 16 %>
+          <a href="<%= root_url + "/search?q=#{params[:q]}&p=2" %>">Next &rarr;</a>
+        <% end %>
+      <% end %>
+    </p>
   </section>
 <% end %>

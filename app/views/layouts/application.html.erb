@@ -10,5 +10,9 @@
 
   <body>
     <%= yield %>
+    <section id="login">
+      <p id="signBtn"><%= link_to 'Sign in', controller: 'users' %></p>
+      <p id="feedbackBtn"><%= link_to 'Tell us how we\'re doing!', controller: 'user_comments' %></p>
+    </section>
   </body>
 </html>

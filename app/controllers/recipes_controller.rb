@@ -9,13 +9,21 @@ class RecipesController < ApplicationController
   def search
     if (params.has_key?(:q))
       if (params[:q].blank?)
-        @recipes = Recipe.none()
+        # Returns nothing (where("1 = 0") is a hack to do this)
+        @recipes = where("1 = 0")
+        @ingredients = where("1 = 0")
       else
-        @recipes = Recipe.search(params[:q])
+        recipe_page = params.has_key?(:p) ? Integer(params[:p]) : 1
+        @recipes = Recipe.search(params[:q], recipe_page)
+        @ingredients = Ingredient.
+          select("#{Ingredient.table_name}.*, #{RecipeIngredient.table_name}.recipe_id").
+          joins(:recipe_ingredients).
+          where("#{RecipeIngredient.table_name}.recipe_id in (?)",
+            @recipes.pluck(:id))
       end
-      # @ingredients = Recipe.getIngredients(params[:search])
     else
-      @recipes = Recipe.all
+      @recipes = where("1 = 0")
+      @ingredients = where("1 = 0")
     end
   end
 
