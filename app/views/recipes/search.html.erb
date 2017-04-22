@@ -67,19 +67,16 @@
               </ul>
             </section>
           </a>
-          <section class ="recipe-save">
-            <%= div_for(recipe, class: recipe_url(recipe)) do %>
-              <%= link_to_toggle_recipe_save recipe %>
-            <% end %>
-            
-          <%= form_tag(:controller => 'recipes', :id => recipe.id, :action => 'save', :method => 'post') do %>
+          <section class="recipe-save">
+            <%= link_to_toggle_recipe_save recipe %>
+          </section>
+
+          <!-- <%= form_tag(:controller => 'recipes', :id => recipe.id, :action => 'save', :method => 'post') do %>
             <%= submit_tag "Save" %>
           <% end %>
-          <!-- change these two buttons to one button that toggles when saved/unsaved -->
           <%= form_tag(:controller => 'recipes', :action => 'unsave', :method => 'post', :id => recipe.id ) do %>
             <%= submit_tag "Unsave"%>
-          <% end %>
-          </section>
+          <% end %> -->
         </section>
       <% end %>
     <% end %>
