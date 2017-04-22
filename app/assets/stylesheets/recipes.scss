@@ -7,7 +7,7 @@ body
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-image: image-url("pho.png");
+  background-image: image-url("pho.gif");
   background-position: center top;
   background-size: 100% auto;
 
@@ -128,6 +128,7 @@ form
   z-index: 1;
 
   background-color: #666;
+  box-shadow: 0 0 18pt rgba(0,0,0,0.6);
 }
 
 #recipe-container
@@ -299,9 +300,29 @@ form
 #navmenu
 {
   width: 100%;
+  margin-top: 0;
   margin-bottom: 24pt;
   text-align: center;
 }
+
+#navmenu a
+{
+  width: 3.25cm;
+  height: 2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #f94;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition: 0.25s;
+}
+
+#navmenu a:hover { background-color: #fb6; transition: 0.25s; }
 
 @media screen and (min-aspect-ratio: 3/2)
 {
@@ -324,25 +345,28 @@ form
 {
   #recipe-container
   {
-    flex-flow: column;
-    justify-content: flex-start;
+    font-size: 2em;
+    top: 3em;
+    height: calc(100vh - 4.8em - 36pt)
   }
 
   .recipe-card
   {
-    margin-bottom: 1.5em;
-    width: 95%;
-    font-size: 2em;
+    width: 100%;
   }
 
   .recipe-save
   {
-    width: 3.5cm;
-    height: 2em;
+    width: 4.5cm;
   }
 
-  .recipe-info ul
+  #navmenu
   {
-    max-height: 3.25em;
+    margin-bottom: 48pt;
+  }
+
+  #navmenu a
+  {
+    width: 5.75cm;
   }
 }

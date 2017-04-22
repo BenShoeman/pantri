@@ -22,6 +22,8 @@
   left: 0;
   width: 100%;
   height: 36pt;
+  display: flex;
+  justify-content: space-between;
 
   background-color: white;
   font-size: 12pt;
@@ -31,19 +33,27 @@
 
 #signBtn
 {
-  float: left;
-  margin: 0;
-  padding: 12pt;
+  margin: 6pt;
+  padding: 6pt;
 }
 
-#signBtn a
-{
-  /*Add a attributes here*/
-}
+#signBtn a { color: #666; transition: 0.25s; }
+#signBtn a:hover { color: #f60; transition: 0.25s; }
 
 #feedbackBtn
 {
-  float: right;
-  margin: 0;
-  padding: 12pt;
+  margin: 6pt;
+  padding: 6pt;
+}
+
+#feedbackBtn a { color: #666; transition: 0.25s; }
+#feedbackBtn a:hover { color: #f60; transition: 0.25s; }
+
+@media screen and (max-device-width: 767px), (orientation: portrait)
+{
+  #login
+  {
+    font-size: 2em;
+    height: 52pt;
+  }
 }

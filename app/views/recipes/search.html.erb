@@ -30,7 +30,6 @@
                   <% if recipe.prep_time < 60 %>
                     <%= recipe.prep_time %> m
                   <% else %>
-                    <!-- Three significant digits or less are printed -->
                     <%= sprintf('%.3g', Float(recipe.prep_time) / 60) %> h
                   <% end %>
                 </p>
@@ -42,7 +41,6 @@
                   <% if recipe.cook_time < 60 %>
                     <%= recipe.cook_time %> m
                   <% else %>
-                    <!-- Three significant digits or less are printed -->
                     <%= sprintf('%.3g', Float(recipe.cook_time) / 60.0) %> h
                   <% end %>
                 </p>
@@ -54,7 +52,6 @@
                   <% if recipe.total_time < 60 %>
                     <%= recipe.total_time %> m
                   <% else %>
-                    <!-- Three significant digits or less are printed -->
                     <%= sprintf('%.3g', Float(recipe.total_time) / 60.0) %> h
                   <% end %>
                 </p>
@@ -70,13 +67,6 @@
           <section class="recipe-save">
             <%= link_to_toggle_recipe_save recipe %>
           </section>
-
-          <!-- <%= form_tag(:controller => 'recipes', :id => recipe.id, :action => 'save', :method => 'post') do %>
-            <%= submit_tag "Save" %>
-          <% end %>
-          <%= form_tag(:controller => 'recipes', :action => 'unsave', :method => 'post', :id => recipe.id ) do %>
-            <%= submit_tag "Unsave"%>
-          <% end %> -->
         </section>
       <% end %>
     <% end %>
@@ -85,7 +75,6 @@
         <% if Integer(params[:p]) > 1 %>
           <a href="<%= root_url + "/search?q=#{params[:q]}&p=#{Integer(params[:p])-1}" %>">&larr; Previous</a>
         <% end %>
-        <% if Integer(params[:p]) > 1 and @recipes.size == 16 %>|<% end %>
         <% if @recipes.size == 16 %>
           <a href="<%= root_url + "/search?q=#{params[:q]}&p=#{Integer(params[:p])+1}" %>">Next &rarr;</a>
         <% end %>
