@@ -65,7 +65,15 @@
             </section>
           </a>
           <section class="recipe-save">
-            <%= link_to_toggle_recipe_save recipe %>
+            <% if recipe.recipe_belongs_to_user(current_user) %>
+              <%= form_tag(:controller => 'recipes', :action => 'unsave', :method => 'post', :id => recipe.id ) do %>
+                <%= submit_tag "Unsave"%>
+              <% end %>
+            <% else %>
+              <%= form_tag(:controller => 'recipes', :action => 'save', :method => 'post', :id => recipe.id ) do %>
+                <%= submit_tag "Save"%>
+              <% end %>
+            <% end %>
           </section>
         </section>
       <% end %>

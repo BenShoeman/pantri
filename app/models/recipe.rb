@@ -29,6 +29,14 @@ class Recipe < ApplicationRecord
     return recipes
   end
 
+  def recipe_belongs_to_user(user)
+    if user.recipes.select {|s| s.users == users}.count > 0
+      return true
+    else
+      return false
+    end
+  end
+
   def saved?
     saved_at != nil
   end
