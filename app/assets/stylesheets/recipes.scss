@@ -74,7 +74,7 @@ body
 #sButton
 {
   box-sizing: border-box;
-  width: 10%;
+  width: 12.5%;
   height: 5em;
   background-image: image-url("search.gif");
   background-color: #ddd;
@@ -271,13 +271,17 @@ form
   height: 2em;
 }
 
-.recipe-save a
+.recipe-save form
 {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0;
+}
+
+.recipe-save a, .recipe-save input
+{
+  width: 100%;
+  height: 100%;
 
   background-color: #888;
   color: white;
@@ -287,14 +291,21 @@ form
   font-size: 1em;
   font-family: Raleway, Arial, Helvetica, sans-serif;
   text-decoration: none;
+  cursor: pointer;
 
   transition: 0.25s;
 }
 
-.recipe-save a:hover
+.recipe-save a:hover, .recipe-save input:hover
 {
   background-color: #f60;
   transition: 0.25s;
+}
+
+.recipe-save a:active, .recipe-save input:active
+{
+  background-color: #b40;
+  transition: 0.125s;
 }
 
 #navmenu
@@ -323,6 +334,7 @@ form
 }
 
 #navmenu a:hover { background-color: #fb6; transition: 0.25s; }
+#navmenu a:active { background-color: #c82; transition: 0.125s; }
 
 @media screen and (min-aspect-ratio: 3/2)
 {
@@ -362,7 +374,7 @@ form
 
   #navmenu
   {
-    margin-bottom: 48pt;
+    margin-bottom: 64pt;
   }
 
   #navmenu a

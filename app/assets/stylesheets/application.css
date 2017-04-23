@@ -37,8 +37,8 @@
   padding: 6pt;
 }
 
-#signBtn a { color: #666; transition: 0.25s; }
-#signBtn a:hover { color: #f60; transition: 0.25s; }
+#signBtn a, #feedbackBtn a, #homeBtn a { color: #666; transition: 0.25s; }
+#signBtn a:hover, #feedbackBtn a:hover, #homeBtn a:hover { color: #f60; transition: 0.25s; }
 
 #feedbackBtn
 {
@@ -46,8 +46,11 @@
   padding: 6pt;
 }
 
-#feedbackBtn a { color: #666; transition: 0.25s; }
-#feedbackBtn a:hover { color: #f60; transition: 0.25s; }
+#homeBtn
+{
+  margin: 6pt;
+  padding: 6pt;
+}
 
 @media screen and (max-device-width: 767px), (orientation: portrait)
 {

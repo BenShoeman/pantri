@@ -3,6 +3,7 @@
   <head>
     <title>pantri</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="user-scalable=no"></meta>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,15 +12,15 @@
   <body>
     <%= yield %>
     <section id="login">
-      <p id="homeBtn"><%= link_to 'Home', controller: 'recipes' %></p>
-      <p id="feedbackBtn"><%= link_to 'Tell us how we\'re doing!', controller: 'user_comments' %></p>
-
       <% if logged_in? %>
-        <p id="signBtn"><%= link_to "Profile", current_user %></p>
-        <p id="signBtn"><%= link_to "Log out", logout_path, method: :delete %>
+        <p id="signBtn">Hi, <%= link_to current_user.name, current_user %>! | <%= link_to "Log out", logout_path, method: :delete %></p>
       <% else %>
         <p id="signBtn"><%= link_to 'Sign in', login_path %></p>
       <% end %>
+
+      <p id="homeBtn"><%= link_to 'Home', controller: 'recipes' %></p>
+
+      <p id="feedbackBtn"><%= link_to 'Tell us how we\'re doing!', controller: 'user_comments' %></p>
     </section>
   </body>
 </html>

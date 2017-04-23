@@ -11,6 +11,7 @@
 
 <% if params.has_key?(:q) %>
   <section id="recipe-container">
+    <% @recipes[0] %>
     <% ings = params[:q].split(/,/) %>
     <% if @recipes.size == 0 %>
       No Recipes Found
@@ -64,17 +65,19 @@
               </ul>
             </section>
           </a>
-          <section class="recipe-save">
-            <% if recipe.recipe_belongs_to_user(current_user) %>
-              <%= form_tag(:controller => 'recipes', :action => 'unsave', :method => 'post', :id => recipe.id ) do %>
-                <%= submit_tag "Unsave"%>
+          <% if logged_in? %>
+            <section class="recipe-save">
+              <% if recipe.recipe_belongs_to_user(current_user) %>
+                <%= form_tag(:controller => 'recipes', :action => 'unsave', :method => 'post', :id => recipe.id ) do %>
+                  <%= submit_tag "Unsave" %>
+                <% end %>
+              <% else %>
+                <%= form_tag(:controller => 'recipes', :action => 'save', :method => 'post', :id => recipe.id ) do %>
+                  <%= submit_tag "Save", :data => { :disable_with => "Saved" } %>
+                <% end %>
               <% end %>
-            <% else %>
-              <%= form_tag(:controller => 'recipes', :action => 'save', :method => 'post', :id => recipe.id ) do %>
-                <%= submit_tag "Save"%>
-              <% end %>
-            <% end %>
-          </section>
+            </section>
+          <% end %>
         </section>
       <% end %>
     <% end %>
