@@ -9,6 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
     <%= yield %>
     <section id="login">
@@ -18,7 +19,7 @@
         <p id="signBtn"><%= link_to 'Sign in', login_path %></p>
       <% end %>
 
-      <p id="homeBtn"><%= link_to 'Home', controller: 'recipes' %></p>
+      <p id="homeBtn"><%= link_to 'Home', root_path %></p>
 
       <p id="feedbackBtn"><%= link_to 'Tell us how we\'re doing!', controller: 'user_comments' %></p>
     </section>

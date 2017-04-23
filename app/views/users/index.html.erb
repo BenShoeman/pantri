@@ -1,8 +1,9 @@
 <%= stylesheet_link_tag params[:controller] %>
 
-<h1>User page</h1>
-<div>
-  <body>
-    <p>user name</p>
-  </body>
-</div>
+<h1>Users: <br></h1>
+<% @users.each do |user| %>
+  <h2 id="uname">
+    <%= link_to user.name, user %>
+    <br>
+  </h2>
+<% end %>

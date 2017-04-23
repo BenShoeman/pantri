@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def index
+    @users = User.all
+  end
+
   def new
       @user = User.new
   end
@@ -18,7 +22,6 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to Pantri!"
       redirect_to @user
     else
-      # If create is not successful
       render 'new'
     end
   end
@@ -43,6 +46,5 @@ private
 
   def user_params
     params.require(:user).permit(:user, :name, :email, :password, :password_confirmation)
-    # deleted require(:user). may need this later but fixed error
   end
 end

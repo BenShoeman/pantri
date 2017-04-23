@@ -17,7 +17,7 @@
   <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages' %>
 
-    <p style="width:20em;text-align:right;"><%= f.label :name, class: 'form' %> <%= f.text_field :name, class: 'form-control' %></p>
+    <p style="width:20em;text-align:right;"><%= f.label "Username", class: 'form' %> <%= f.text_field :name, class: 'form-control' %></p>
 
     <p style="width:20em;text-align:right;"><%= f.label :email, class: 'form' %> <%= f.email_field :email, class: 'form-control' %></p>
 

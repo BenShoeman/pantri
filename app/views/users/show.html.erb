@@ -13,9 +13,13 @@
 </section>
 
 <section id="recipe-container">
-  <h1 id="uname">Hello, <%= @user.name %>!</h1>
-  <h3 id="savedheader">Your Saved Recipes:</h3>
-
+  <% if logged_in? %>
+    <h1 id="uname">Hello, <%= @user.name %>!</h1>
+    <h3 id="savedheader">Your Saved Recipes:</h3>
+  <% else %>
+    <h1 id="uname"> <%= @user.name %>'s Profile!</h1>
+    <h3 id="savedheader"> <%= @user.name %>'s Saved Recipes:</h3>
+  <% end %>
   <% @ingredients = Ingredient.select("#{Ingredient.table_name}.*, #{RecipeIngredient.table_name}.recipe_id").joins(:recipe_ingredients).where("#{RecipeIngredient.table_name}.recipe_id in (?)",@user.recipes.pluck(:id)) %>
   <% @user.recipes.each do |recipe| %>
     <section class="recipe-card">
@@ -81,6 +85,9 @@
       <% end %>
     </section>
   <% end %>
-
-  <p id="shareinfo">Share your recipes with friends using this link:<br /><input onclick="this.select();document.execCommand('copy');this.value='Copied!';this.disabled='disabled'" value="<%= request.original_url %>"></input></p>
+  <% if logged_in? %>
+    <p id="shareinfo">Share your recipes with friends using this link:<br /><input onclick="this.select();document.execCommand('copy');this.value='Copied!';this.disabled='disabled'" value="<%= request.original_url %>"></input></p>
+  <% else %>
+  <p id="shareinfo">Share <%= @user.name %>'s recipes with friends using this link:<br /><input onclick="this.select();document.execCommand('copy');this.value='Copied!';this.disabled='disabled'" value="<%= request.original_url %>"></input></p>
+  <% end %>
 </section>
