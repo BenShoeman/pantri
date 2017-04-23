@@ -35,17 +35,8 @@ class RecipesController < ApplicationController
   def save
     recipe = Recipe.find(params[:id])
     current_user.recipes << recipe
-    #self.saved_at = Time.now
   end
 
-  def save?
-    saved_at != nil
-  end
-
-  def save!
-    save
-    save!
-  end
 
   def unsave
     recipe = Recipe.find(params[:id])
@@ -53,13 +44,8 @@ class RecipesController < ApplicationController
       recipe.users.delete(current_user)
       redirect_to :back
     end
-    # self.favorited_at = nil
   end
 
-  def unsave!
-    unsave
-    save!
-  end
 
 
   # Commenting out the below because we don't need people to edit recipe entries

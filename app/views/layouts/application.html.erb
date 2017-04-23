@@ -11,8 +11,15 @@
   <body>
     <%= yield %>
     <section id="login">
-      <p id="signBtn"><%= link_to 'Sign in', controller: 'users' %></p>
+      <p id="homeBtn"><%= link_to 'Home', controller: 'recipes' %></p>
       <p id="feedbackBtn"><%= link_to 'Tell us how we\'re doing!', controller: 'user_comments' %></p>
+
+      <% if logged_in? %>
+        <p id="signBtn"><%= link_to "Profile", current_user %></p>
+        <p id="signBtn"><%= link_to "Log out", logout_path, method: :delete %>
+      <% else %>
+        <p id="signBtn"><%= link_to 'Sign in', login_path %></p>
+      <% end %>
     </section>
   </body>
 </html>
