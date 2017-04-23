@@ -14,8 +14,13 @@
 
 <section id="recipe-container">
   <% if logged_in? %>
-    <h1 id="uname">Hello, <%= @user.name %>!</h1>
-    <h3 id="savedheader">Your Saved Recipes:</h3>
+    <% if @user.id == current_user.id %>
+      <h1 id="uname">Hello, <%= @user.name %>!</h1>
+      <h3 id="savedheader">Your Saved Recipes:</h3>
+    <% else %>
+      <h1 id="uname"> <%= @user.name %>'s Profile!</h1>
+      <h3 id="savedheader"> <%= @user.name %>'s Saved Recipes:</h3>
+    <% end %>
   <% else %>
     <h1 id="uname"> <%= @user.name %>'s Profile!</h1>
     <h3 id="savedheader"> <%= @user.name %>'s Saved Recipes:</h3>
@@ -86,8 +91,12 @@
     </section>
   <% end %>
   <% if logged_in? %>
-    <p id="shareinfo">Share your recipes with friends using this link:<br /><input onclick="this.select();document.execCommand('copy');this.value='Copied!';this.disabled='disabled'" value="<%= request.original_url %>"></input></p>
+    <% if @user.id == current_user.id %>
+      <p id="shareinfo">Share your recipes with friends using this link:<br /><input onclick="this.select();document.execCommand('copy');this.value='Copied!';this.disabled='disabled'" value="<%= request.original_url %>"></input></p>
+    <% else %>
+      <p id="shareinfo">Share <%= @user.name %>'s recipes with friends using this link:<br /><input onclick="this.select();document.execCommand('copy');this.value='Copied!';this.disabled='disabled'" value="<%= request.original_url %>"></input></p>
+    <% end %>
   <% else %>
-  <p id="shareinfo">Share <%= @user.name %>'s recipes with friends using this link:<br /><input onclick="this.select();document.execCommand('copy');this.value='Copied!';this.disabled='disabled'" value="<%= request.original_url %>"></input></p>
+    <p id="shareinfo">Share <%= @user.name %>'s recipes with friends using this link:<br /><input onclick="this.select();document.execCommand('copy');this.value='Copied!';this.disabled='disabled'" value="<%= request.original_url %>"></input></p>
   <% end %>
 </section>

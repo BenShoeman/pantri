@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       redirect_to user
     else
       flash.now[:danger] = 'Invalid email/password combination'
-      # flash is NOT working....
+      # flash is not working
       render 'new'
     end
   end
