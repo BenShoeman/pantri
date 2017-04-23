@@ -117,7 +117,7 @@ form
   margin: 0;
 }
 
-form#new_user
+form#loginform
 {
   flex-flow: column;
   width: 100%;
@@ -382,28 +382,8 @@ input.btn:active
   margin-top: 0;
 }
 
-#savedheader
-{
-  width: 100%;
-  text-align: center;
-  margin-top: 0;
-  padding-bottom: 0.5em;
-  border-bottom: 1px solid #aaa;
-}
-
-#shareinfo
-{
-  width: 100%;
-  text-align: center;
-  margin-bottom: 2em;
-}
-
-#shareinfo input
-{
-  width: 17.5em;
-  text-align: center;
-  font-family: Raleway, Arial, Helvetica, sans-serif;
-}
+a { color: #666; transition: 0.25s; }
+a:hover { color: #f60; transition: 0.25s; }
 
 @media screen and (min-aspect-ratio: 3/2)
 {

@@ -1,15 +1,33 @@
-
+<%= stylesheet_link_tag params[:controller] %>
 <% provide(:title, "Log in") %>
-<h1>Log in</h1>
 
-<%= form_for(:session, url: login_path) do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control' %>
+<section id="logo-search-container" class="search">
+  <header id="logo" onclick="window.location='/'"></header>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
+  <%= form_tag (root_url + "search"), method: :get, :enforce_utf8 => false, id: "search-form" do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Type ingredients...", id: "search_bar", :autocomplete => :off, autofocus: "autofocus" %>
+    <%= submit_tag "", name: nil, id: "sButton" %>
+  <% end %>
+</section>
 
-  <%= f.submit "Log in", class: "btn btn-primary" %>
-<% end %>
+<section id="recipe-container">
+  <h1 id="uname" style="height:1em;">Log in</h1>
 
-<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  <%= form_for(:session, url: login_path, :html => { :id => "loginform" }) do |f| %>
+    <p style="width:16em;text-align:right;">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </p>
+
+    <p style="width:16em;text-align:right;">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+    </p>
+
+    <p style="width:100%;text-align:center;">
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    </p>
+  <% end %>
+
+  <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+</section>

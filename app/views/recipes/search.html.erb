@@ -59,7 +59,7 @@
               <% end %>
 
               <ul>
-                <% @ingredients.select { |e| e.recipe_id == recipe.id }.each do |ing| %>
+                <% @ingredients.select { |e| e.recipe_id == recipe.id }.sort_by { |e| ings.any? { |i| e.name.include? i.strip().downcase() } ? 0 : 1 }.each do |ing| %>
                   <li<% if ings.any? { |i| ing.name.include? i.strip().downcase() } %> class="relevant"<% end %>><%= ing.name %></li>
                 <% end %>
               </ul>

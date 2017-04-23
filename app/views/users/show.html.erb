@@ -2,72 +2,85 @@
 
 <%= stylesheet_link_tag params[:controller] %>
 <% provide(:title, :name) %>
-<!--
+
 <section id="logo-search-container" class="search">
   <header id="logo" onclick="window.location='/'"></header>
+
+  <%= form_tag (root_url + "search"), method: :get, :enforce_utf8 => false, id: "search-form" do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Type ingredients...", id: "search_bar", :autocomplete => :off, autofocus: "autofocus" %>
+    <%= submit_tag "", name: nil, id: "sButton" %>
+  <% end %>
 </section>
- -->
-<div>
-<h1><%= @user.name %></h1>
 
-<section class="recipes">
-  <h3><strong>Saved Recipes:</strong></h3>
+<section id="recipe-container">
+  <h1 id="uname">Hello, <%= @user.name %>!</h1>
+  <h3 id="savedheader">Your Saved Recipes:</h3>
 
+  <% @ingredients = Ingredient.select("#{Ingredient.table_name}.*, #{RecipeIngredient.table_name}.recipe_id").joins(:recipe_ingredients).where("#{RecipeIngredient.table_name}.recipe_id in (?)",@user.recipes.pluck(:id)) %>
   <% @user.recipes.each do |recipe| %>
-    <a class="recipe-card-link" target="_blank" href="<%= recipe.recipe_url %>">
-      <section class="recipe-card">
+    <section class="recipe-card">
+      <a class="recipe-card-link" target="_blank" href="<%= recipe.recipe_url %>">
         <section class="recipe-image" style="background-image:url('<%= recipe.image_url %>');"></section>
         <section class="recipe-info">
-          <h1><%= recipe.name %></h1>
-          <p class="recipe-servings">Serves <%= recipe.servings %></p>
-          <p class="recipe-time">
-            Prep:
-            <% if recipe.prep_time < 60 %>
-              <%= recipe.prep_time %> m
+          <h1><%= truncate(recipe.name, :length => 42) %></h1>
+
+          <% if recipe.servings > 0 %><p class="recipe-servings">Serves <%= recipe.servings %></p><% end %>
+
+          <% if recipe.prep_time > 0 %>
+            <p class="recipe-time">
+              Prep:
+              <% if recipe.prep_time < 60 %>
+                <%= recipe.prep_time %> m
               <% else %>
-              <!-- Three significant digits or less are printed -->
-              <%= sprintf('%.3g', Float(recipe.prep_time) / 60) %> h
-            <% end %>
-          </p>
-          <p class="recipe-time">
-            Cook:
-            <% if recipe.cook_time < 60 %>
-              <%= recipe.cook_time %> m
-            <% else %>
-              <!-- Three significant digits or less are printed -->
-              <%= sprintf('%.3g', Float(recipe.cook_time) / 60.0) %> h
-            <% end %>
-          </p>
-          <p class="recipe-time">
-            Ready in:
-            <% if (recipe.prep_time + recipe.cook_time) < 60 %>
-              <%= recipe.prep_time + recipe.cook_time %> m
-            <% else %>
-               <!-- Three significant digits or less are printed -->
-              <%= sprintf('%.3g', Float(recipe.total_time) / 60.0) %> h
-            <% end %>
-          </p>
+                <%= sprintf('%.3g', Float(recipe.prep_time) / 60) %> h
+              <% end %>
+            </p>
+          <% end %>
+
+          <% if recipe.cook_time > 0 %>
+            <p class="recipe-time">
+              Cook:
+              <% if recipe.cook_time < 60 %>
+                <%= recipe.cook_time %> m
+              <% else %>
+                <%= sprintf('%.3g', Float(recipe.cook_time) / 60.0) %> h
+              <% end %>
+            </p>
+          <% end %>
+
+          <% if recipe.total_time > 0 %>
+            <p class="recipe-time">
+              Ready in:
+              <% if recipe.total_time < 60 %>
+                <%= recipe.total_time %> m
+              <% else %>
+                <%= sprintf('%.3g', Float(recipe.total_time) / 60.0) %> h
+              <% end %>
+            </p>
+          <% end %>
+
           <ul>
-            <!-- We do the two parts separately so relevant ingredients are at the top -->
-            <% recipe.ingredients.collect(&:name).each do |ingredient| %>
-              <!-- Otherwise go with default styling -->
-              <li><%= ingredient %></li>
+            <% @ingredients.select { |e| e.recipe_id == recipe.id }.each do |ing| %>
+              <li><%= ing.name %></li>
             <% end %>
           </ul>
         </section>
       </a>
-      <section class ="recipe-save">
-        <% if recipe.recipe_belongs_to_user(current_user) %>
-            <%= form_tag :controller => 'recipes', :action => 'unsave', :method => 'post', :id => recipe.id do %>
-              <%= submit_tag "Unsave"%>
+      <% if logged_in? %>
+        <section class="recipe-save">
+          <% if recipe.recipe_belongs_to_user(current_user) %>
+            <%= form_tag(:controller => 'recipes', :action => 'unsave', :method => 'post', :id => recipe.id ) do %>
+              <%= submit_tag "Unsave" %>
             <% end %>
-        <% else %>
-          <%= form_tag :controller => 'recipes', :action => 'save', :method => 'post', :id => recipe.id do %>
-            <%= submit_tag "Save"%>
+          <% else %>
+            <%= form_tag(:controller => 'recipes', :action => 'save', :method => 'post', :id => recipe.id ) do %>
+              <%= submit_tag "Save", :data => { :disable_with => "Saved" } %>
+            <% end %>
           <% end %>
-        <% end %>
-      </section>
+        </section>
+      <% end %>
     </section>
   <% end %>
+
+  <p id="shareinfo">Share your recipes with friends using this link:<br /><input onclick="this.select();document.execCommand('copy');this.value='Copied!';this.disabled='disabled'" value="<%= request.original_url %>"></input></p>
 </section>
-</div>
