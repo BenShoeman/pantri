@@ -15,7 +15,7 @@ def link_spider(url, dbcon):
     for ul in soup.findAll('ul',{'class' : 'm-PromoList o-Capsule__m-PromoList'}):
         for li in ul.findAll('li',{'class' : 'm-PromoList__a-ListItem'}):
             for a in li.findAll('a'):
-                time.sleep(2)
+                time.sleep(0.5)
                 recipe_url = a.get('href')
                 recipe_spider(recipe_url, dbcon)
 
@@ -141,7 +141,7 @@ def recipe_spider(recipe_url, dbcon):
                         # and if we find it, use that ID.
                         # Otherwise, we'll make a new entry in the ingredients table
                         # Finally, make an entry linking the recipe and ingredients
-                        cur.execute("select id from ingredients where name ilike '%%%s%%';" % ing)
+                        cur.execute("select id from ingredients where name = '%s';" % ing)
                         # If we didn't get anything from that query
                         if cur.rowcount < 1:
                             query = "insert into ingredients (name, created_at, updated_at) values ('%s', now(), now()) returning id;" % ing
