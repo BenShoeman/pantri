@@ -14,7 +14,7 @@
     <%= yield %>
     <section id="login">
       <% if logged_in? %>
-        <p id="signBtn">Hi, <%= link_to current_user.name, current_user %>! | <%= link_to "Log out", logout_path, method: :delete %></p>
+        <p id="signBtn">Hi, <%= link_to current_user.name, current_user %>! | <%= link_to "Edit Profile", edit_user_path(current_user) %> | <%= link_to "Log out", logout_path, method: :delete %></p>
       <% else %>
         <p id="signBtn"><%= link_to 'Sign in', login_path %></p>
       <% end %>
