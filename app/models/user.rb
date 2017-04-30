@@ -1,5 +1,16 @@
-#class User < ApplicationRecord
-#end
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  name            :string
+#  email           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string
+#
+# You can make an account, which is stored as a User in the database. A User can
+# save/unsave recipes to their account and not much else.
 
 class User < ActiveRecord::Base
 
@@ -13,6 +24,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  # Use bcrypt to convert a string password into a securely hashed password.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost

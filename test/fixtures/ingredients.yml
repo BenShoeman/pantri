@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: ingredients
+#
+#  id             :integer          not null, primary key
+#  name           :string
+#  times_searched :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 one:
   name: ingr1
 

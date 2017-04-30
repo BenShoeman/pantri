@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: recipes
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  servings   :integer
+#  prep_time  :integer
+#  cook_time  :integer
+#  total_time :integer
+#  recipe_url :string(2083)
+#  image_url  :string(2083)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 one:
   name: Recipe 1
   servings: 4

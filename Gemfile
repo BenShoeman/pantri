@@ -57,3 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :jruby]
 
 gem 'bootstrap-sass'
 gem 'record_tag_helper', '~> 1.0'
+
+# Autodoc for models
+gem 'annotate'

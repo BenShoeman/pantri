@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Recipe - Pantri</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ApplicationRecord
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-search">::search</a>
+    
+    <li ><a href="#method-i-recipe_belongs_to_user">#recipe_belongs_to_user</a>
+    
+    <li ><a href="#method-i-save">#save</a>
+    
+    <li ><a href="#method-i-save-21">#save!</a>
+    
+    <li ><a href="#method-i-saved-3F">#saved?</a>
+    
+    <li ><a href="#method-i-saved_at">#saved_at</a>
+    
+    <li ><a href="#method-i-unsave">#unsave</a>
+    
+    <li ><a href="#method-i-unsave-21">#unsave!</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Recipe">
+  <h1 id="class-Recipe" class="class">
+    class Recipe
+  </h1>
+
+  <section class="description">
+    
+<h2 id="class-Recipe-label-Schema+Information">Schema Information<span><a href="#class-Recipe-label-Schema+Information">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Table name: recipes</p>
+
+<pre>id         :integer          not null, primary key
+name       :string
+servings   :integer
+prep_time  :integer
+cook_time  :integer
+total_time :integer
+recipe_url :string(2083)
+image_url  :string(2083)
+created_at :datetime         not null
+updated_at :datetime         not null</pre>
+
+<p>Recipes are one of the essential structures of the database. When you
+search for Ingredients, you get back Recipes that have those Ingredients.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search</span><span
+            class="method-args">(search, page = 1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Search the database for recipes given the ingredients provided in search.
+<strong>search</strong> is the search query.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="search-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">search</span>, <span class="ruby-identifier">page</span> = <span class="ruby-value">1</span>)
+  <span class="ruby-identifier">items_per_page</span> = <span class="ruby-value">16</span>
+
+  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">search</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/,/</span>)
+  <span class="ruby-identifier">search_query</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">param</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">param</span> = <span class="ruby-identifier">param</span>.<span class="ruby-identifier">strip</span>().<span class="ruby-identifier">downcase</span>()
+    <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">param</span>.<span class="ruby-identifier">blank?</span>
+      <span class="ruby-identifier">search_query</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{Ingredient.table_name}.name ilike '%&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">param</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;%' or &quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">search_query</span> = <span class="ruby-identifier">search_query</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">-5</span>]
+
+  <span class="ruby-identifier">recipes</span> = <span class="ruby-constant">Recipe</span>.
+    <span class="ruby-identifier">joins</span>(<span class="ruby-value">:recipe_ingredients</span>).<span class="ruby-identifier">joins</span>(<span class="ruby-value">:ingredients</span>).
+    <span class="ruby-identifier">where</span>(<span class="ruby-identifier">search_query</span>).
+    <span class="ruby-identifier">group</span>(<span class="ruby-node">&quot;#{Recipe.table_name}.id&quot;</span>).
+    <span class="ruby-identifier">order</span>(<span class="ruby-node">&quot;count(#{Ingredient.table_name}.id) desc&quot;</span>).
+    <span class="ruby-identifier">limit</span>(<span class="ruby-identifier">items_per_page</span>).<span class="ruby-identifier">offset</span>((<span class="ruby-identifier">page</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>) <span class="ruby-operator">*</span> <span class="ruby-identifier">items_per_page</span>)
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">recipes</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-recipe_belongs_to_user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">recipe_belongs_to_user</span><span
+            class="method-args">(user)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if recipe belongs to the user.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="recipe_belongs_to_user-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">recipe_belongs_to_user</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">recipes</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">users</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">users</span>}.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-save" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Save the current recipe.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="save-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">saved_at</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-save-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save!</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Perform save action.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="save-21-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save!</span>
+  <span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">save!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-saved-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">saved?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if the recipe is saved.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="saved-3F-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">saved?</span>
+  <span class="ruby-identifier">saved_at</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-saved_at" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">saved_at</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Default <a href="Recipe.html#method-i-saved_at">#saved_at</a> value</p>
+          
+          
+
+          
+          <div class="method-source-code" id="saved_at-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">saved_at</span>
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unsave" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unsave</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Unsave the current recipe.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="unsave-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">unsave</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">saved_at</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unsave-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unsave!</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Perform unsave action.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="unsave-21-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">unsave!</span>
+  <span class="ruby-identifier">unsave</span>
+  <span class="ruby-identifier">save!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.1.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
