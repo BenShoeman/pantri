@@ -1,3 +1,434 @@
-// Place all the styles related to the User_comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* Import Raleway webfont from Google */
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+body
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-image: image-url("pho.gif");
+  background-position: center top;
+  background-size: 100% auto;
+
+  font-size: 12pt;
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+}
+
+#logo
+{
+  box-sizing: border-box;
+  width: 100%;
+  height: 14em;
+  background-image: image-url("logowhite.gif");
+  background-color: rgba(255, 165, 105, 0.5);
+  color: rgba(75,75,75,1);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 75%;
+  padding-top: 6em;
+  padding-bottom: 2em;
+  margin-bottom: 3em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search #logo
+{
+  width: 12em;
+  height: 100%;
+  margin: 1em;
+
+  background-image: image-url('logowhite.gif');
+  background-color: transparent;
+  background-position: left;
+  background-size: 100% auto;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+#search_bar
+{
+  font-size: 4em;
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  width: 90%;
+  height: 5em;
+  background-color: rgba(255, 255, 255, 0.65);
+  border: none;
+  padding-left: 10px;
+  -webkit-transform:translateY(-38.5%);
+  color: rgba(75,75,75,1);
+}
+
+.search #search_bar
+{
+  width: 100%;
+  padding-top: 0.25em;
+  padding-left: 0.25em;
+  // font-size: 3em;
+}
+
+#sButton
+{
+  box-sizing: border-box;
+  width: 12.5%;
+  height: 5em;
+  background-image: image-url("search.gif");
+  background-color: #ddd;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 60%;
+  border: none;
+
+  cursor: pointer;
+}
+
+.search #sButton
+{
+  height: 100%;
+}
+
+form
+{
+  box-sizing: border-box;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  height:5em;
+  overflow: hidden;
+}
+
+.search form
+{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+form#commentform
+{
+  flex-flow: column;
+  width: 100%;
+  height: 80%;
+  margin: 0;
+  align-items: center;
+}
+
+#logo-search-container
+{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+#logo-search-container.search
+{
+  position: fixed;
+  flex-flow: row;
+  height: 6em;
+  z-index: 1;
+
+  background-color: #666;
+  box-shadow: 0 0 18pt rgba(0,0,0,0.6);
+}
+
+#recipe-container
+{
+  /* Display elements in card format wrapping around the body */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+  /* Same width as form for consistency */
+  width: 80%;
+  height: calc(100vh - 8em - 36pt);
+  overflow: auto;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 2em;
+
+  position: absolute;
+  top: 6em;
+  left: 0;
+  z-index: 0;
+
+  background-color: rgba(255,255,255,0.9);
+}
+
+.recipe-card
+{
+  position: relative;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 2em;
+  padding: 0;
+  width: 3.25in;
+  height: 16em;
+
+  box-shadow: 0 0 1em rgba(0,0,0,0.6);
+  color: black;
+  font-size: 1em;
+}
+
+.recipe-card-link
+{
+  width: 100%;
+  height: 100%;
+}
+
+.recipe-image
+{
+  position: absolute;
+  width: 100%;
+  height: 9em;
+  top: 0;
+
+  background-position: center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.recipe-info
+{
+  position: absolute;
+  overflow: hidden;
+  width: calc(100% - 0.2in);
+  min-height: 7em;
+  bottom: 0;
+  padding: 0.1in;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  background-color: white;
+  color: black;
+
+  font-size: 0.9em;
+}
+
+.recipe-info h1
+{
+  width: 75%;
+  height: auto;
+  margin: 0;
+  font-size: 1.25em;
+}
+
+.recipe-info p.recipe-servings
+{
+  width: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  font-size: 1em;
+}
+
+.recipe-info p.recipe-time
+{
+  margin-top: 0.1in;
+  margin-bottom: 0;
+  -webkit-margin-before: 0.1in;
+  -webkit-margin-after: 0;
+
+  font-size: 1em;
+}
+
+.recipe-info ul
+{
+  margin: 0;
+  margin-top: 0.05in;
+  padding: 0;
+  width: 100%;
+  max-height: 2.75em;
+  overflow: auto;
+
+  // Raleway is a really wide font, so we'll revert to Arial/Helvetica for
+  // the recipe list
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.recipe-info ul > li
+{
+  display: inline-block;
+  margin-top: 0.05in;
+  margin-left: 0;
+  margin-right: 0.05in;
+  margin-bottom: 0;
+
+  font-size: 0.75em;
+  color: #555;
+}
+
+.recipe-info ul > .relevant
+{
+  color: #f60;
+}
+
+.recipe-save
+{
+  position: absolute;
+  top: 0.8em;
+  right: 0.8em;
+  width: 1.75cm;
+  height: 2em;
+}
+
+.recipe-save form
+{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.recipe-save a, .recipe-save input
+{
+  width: 100%;
+  height: 100%;
+
+  background-color: #888;
+  color: white;
+  border: 0px;
+  box-shadow: 0 0 1.5em rgba(255,255,255,0.6);
+
+  font-size: 1em;
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.recipe-save a:hover, .recipe-save input:hover
+{
+  background-color: #f60;
+  transition: 0.25s;
+}
+
+.recipe-save a:active, .recipe-save input:active
+{
+  background-color: #b40;
+  transition: 0.125s;
+}
+
+input.btn
+{
+  background-color: #888;
+  color: white;
+  border: 0;
+  padding: 0.5em;
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  font-size: 1em;
+  transition: 0.25s;
+}
+input.btn:hover
+{
+  background-color: #f60;
+  transition: 0.25s;
+}
+input.btn:active
+{
+  background-color: #b40;
+  transition: 0.125s;
+}
+
+#navmenu
+{
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 24pt;
+  text-align: center;
+}
+
+#navmenu a
+{
+  width: 3.25cm;
+  height: 2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #f94;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition: 0.25s;
+}
+
+#navmenu a:hover { background-color: #fb6; transition: 0.25s; }
+#navmenu a:active { background-color: #c82; transition: 0.125s; }
+
+#uname
+{
+  width: 100%;
+  text-align: center;
+  margin-top: 0;
+}
+
+a { color: #666; transition: 0.25s; }
+a:hover { color: #f60; transition: 0.25s; }
+
+@media screen and (min-aspect-ratio: 3/2)
+{
+  body
+  {
+    background-size: 100% auto;
+  }
+}
+
+@media screen and (max-aspect-ratio: 3/2)
+{
+  body
+  {
+    background-size: auto 100vh;
+  }
+}
+
+/* For mobile devices */
+@media screen and (max-device-width: 767px), (orientation: portrait)
+{
+  #recipe-container
+  {
+    font-size: 2em;
+    top: 3em;
+    height: calc(100vh - 4.8em - 36pt)
+  }
+
+  .recipe-card
+  {
+    width: 100%;
+  }
+
+  .recipe-save
+  {
+    width: 4.5cm;
+  }
+
+  #navmenu
+  {
+    margin-bottom: 64pt;
+  }
+
+  #navmenu a
+  {
+    width: 5.75cm;
+  }
+}

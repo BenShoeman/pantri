@@ -1,32 +1,46 @@
-<%= form_for :user_comment, url: user_comments_path do |c| %>
-  <h1>How are we doing?</h1>
-  <% if @user_comment.errors.any? %>
-   <div id = "error_explanation">
-     <h2>
-       <%= pluralize(@user_comment.errors.count, "error") %>
-        prohibited this article from being saved:
-     </h2>
-     <ul>
-       <% @user_comment.errors.full_messages.each do |msg| %>
-         <li><%= msg %></li>
-       <% end %>
-     </ul>
-   </div>
+<%= stylesheet_link_tag params[:controller] %>
+
+<% provide(:title, "Leave a comment") %>
+
+<section id="logo-search-container" class="search">
+  <header id="logo" onclick="window.location='/'"></header>
+
+  <%= form_tag (root_url + "search"), method: :get, :enforce_utf8 => false, id: "search-form" do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Type ingredients...", id: "search_bar", :autocomplete => :off, autofocus: "autofocus" %>
+    <%= submit_tag "", name: nil, id: "sButton" %>
   <% end %>
+</section>
 
-  <p>
-    <%= c.label :subject %><br>
-    <%= c.text_field :subject %>
-  </p>
- 
-  <p>
-    <%= c.label :comment %><br>
-    <%= c.text_area :comment %>
-  </p>
- 
-  <p>
-    <%= c.submit :submit %>
-  </p>
-<% end %>
+<section id="recipe-container">
+  <h1 id="uname" style="height:1em;">How are we doing?</h1>
+  <%= form_for :user_comment, url: user_comments_path, :html => { :id => "commentform" } do |c| %>
+    <% if @user_comment.errors.any? %>
+     <div id = "error_explanation">
+       <h2>
+         <%= pluralize(@user_comment.errors.count, "error") %>
+          prohibited this comment from being saved:
+       </h2>
+       <ul>
+         <% @user_comment.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+         <% end %>
+       </ul>
+     </div>
+    <% end %>
 
-<%= link_to 'Back', user_comments_path %>
+    <p style="width:100%;">
+      <%= c.label :subject %>
+      <%= c.text_field :subject %>
+    </p>
+
+    <p style="width:100%;">
+      <%= c.label :comment %>
+      <%= c.text_area :comment %>
+    </p>
+
+    <p style="width:100%;">
+      <%= c.submit :submit %>
+    </p>
+  <% end %>
+</section>
+<!-- <%= link_to 'Back', user_comments_path %> -->

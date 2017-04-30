@@ -12,7 +12,7 @@
 <% if params.has_key?(:q) %>
   <section id="recipe-container">
     <% @recipes[0] %>
-    <% ings = params[:q].split(/,/) %>
+    <% ings = params[:q].split(/,/).collect{ |e| e.strip || e }.delete_if{ |e| e == "" } %>
     <% if @recipes.size == 0 %>
       No Recipes Found
     <% else %>

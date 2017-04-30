@@ -1,20 +1,34 @@
-<h1>Comments</h1>
+<%= stylesheet_link_tag params[:controller] %>
 
-<table>
-  
-  <tr>
-    <th>Subject</th>
-  </tr>
+<section id="logo-search-container" class="search">
+  <header id="logo" onclick="window.location='/'"></header>
 
-  <% @user_comments.each do |cmmt| %>
-    <tr>
-      <td><%= cmmt.subject %></td>
-      <td><%= link_to 'Show', user_comment_path(cmmt) %></td>
-      <td><%= link_to 'Delete', user_comment_path(cmmt), method: :delete, data: { confirm: 'Delete comment?'} %></td>
-    </tr>
+  <%= form_tag (root_url + "search"), method: :get, :enforce_utf8 => false, id: "search-form" do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Type ingredients...", id: "search_bar", :autocomplete => :off, autofocus: "autofocus" %>
+    <%= submit_tag "", name: nil, id: "sButton" %>
   <% end %>
+</section>
 
-</table>
+<section id="recipe-container">
+  <h1 id="uname" style="height:1em;">Comments</h1>
 
-<p><%= link_to 'Make a comment', new_user_comment_path %></p>
-<p><%= link_to 'Home', controller: 'recipes' %></p>
+  <table style="width:100%;">
+
+    <tr>
+      <th style="width:30%;">Subject</th>
+      <th style="width:70%;">Comment</th>
+    </tr>
+
+    <% @user_comments.each do |cmmt| %>
+      <tr>
+        <td><%= cmmt.subject %></td>
+        <td><%= cmmt.comment %></td>
+        <!-- <td><%= link_to 'Show', user_comment_path(cmmt) %></td> -->
+        <!-- <td><%= link_to 'Delete', user_comment_path(cmmt), method: :delete, data: { confirm: 'Delete comment?'} %></td> -->
+      </tr>
+    <% end %>
+
+  </table>
+
+  <p style="width:100%;height:1em;"><%= link_to 'Leave a comment', new_user_comment_path %></p>
+</section>
