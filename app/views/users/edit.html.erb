@@ -1,25 +1,40 @@
 <!-- app/views/users/edit.html.erb -->
 <%= stylesheet_link_tag params[:controller] %>
-
 <% provide(:title, "Edit user") %>
-<h1>Edit your profile</h1>
+
+<section id="logo-search-container" class="search">
+  <header id="logo" onclick="window.location='/'"></header>
+</section>
+
+<section id="recipe-container">
+  <h1 id="uname" style="height:1em;">Edit your profile</h1>
   <%= form_for(@user) do |f| %>
     <%= render 'shared/error_messages' %>
+    
+    <p style="width:16em;text-align:right;">
+      <%= f.label :name, class: 'form' %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </p>
 
-    <p><%= f.label :name, class: 'form' %></p>
-    <p><%= f.text_field :name, class: 'form-control' %></p>
+    <p style="width:16em;text-align:right;">
+      <%= f.label :email, class: 'form' %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </p>
 
-    <p><%= f.label :email, class: 'form' %></p>
-    <p><%= f.email_field :email, class: 'form-control' %></p>
+    <p style="width:16em;text-align:right;">
+      <%= f.label :password , class: 'form'%>
+      <%= f.password_field :password, class: 'form-control' %>
+    </p>
 
-    <p><%= f.label :password , class: 'form'%></p>
-    <p><%= f.password_field :password, class: 'form-control' %></p>
+    <p style="width:16em;text-align:right;">
+      <%= f.label :password_confirmation, "Confirm Password", class: 'form' %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </p>
 
-    <p><%= f.label :password_confirmation, "Confirm Password", class: 'form' %></p>
-    <p><%= f.password_field :password_confirmation, class: 'form-control' %></p>
-
-    <p><%= f.submit "Save changes" %></p>
-
+    <p style="width:100%;text-align:center;">
+      <%= f.submit "Save changes" %>
+    </p>
   <% end %>
+</section>
 
-<!-- ADD CANCEL BUTTON --> 
+<!-- ADD CANCEL BUTTON -->

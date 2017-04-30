@@ -421,6 +421,11 @@ input.btn:active
   }
 }
 
+#user_edit{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /* For mobile devices */
 @media screen and (max-device-width: 767px), (orientation: portrait)
 {
