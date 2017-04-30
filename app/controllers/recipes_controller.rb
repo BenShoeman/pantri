@@ -9,9 +9,9 @@ class RecipesController < ApplicationController
   def search
     if (params.has_key?(:q))
       if (params[:q].blank?)
-        # Returns nothing (where("1 = 0") is a hack to do this)
-        @recipes = where("1 = 0")
-        @ingredients = where("1 = 0")
+        # Returns nothing
+        @recipes = nil
+        @ingredients = nil
       else
         recipe_page = params.has_key?(:p) ? Integer(params[:p]) : 1
         @recipes = Recipe.search(params[:q], recipe_page)
@@ -22,8 +22,8 @@ class RecipesController < ApplicationController
             @recipes.pluck(:id))
       end
     else
-      @recipes = where("1 = 0")
-      @ingredients = where("1 = 0")
+      @recipes = nil
+      @ingredients = nil
     end
   end
 

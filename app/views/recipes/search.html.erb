@@ -9,8 +9,8 @@
   <% end %>
 </section>
 
-<% if params.has_key?(:q) %>
-  <section id="recipe-container">
+<section id="recipe-container">
+  <% if params.has_key?(:q) %>
     <% @recipes[0] %>
     <% ings = params[:q].split(/,/).collect{ |e| e.strip || e }.delete_if{ |e| e == "" } %>
     <% if @recipes.size == 0 %>
@@ -95,5 +95,7 @@
         <% end %>
       <% end %>
     </p>
-  </section>
-<% end %>
+  <% else %>
+    No Recipes Found
+  <% end %>
+</section>
